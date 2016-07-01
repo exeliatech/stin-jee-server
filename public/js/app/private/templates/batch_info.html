@@ -1,0 +1,57 @@
+<div class="batch_switcher">
+    <a href="#" class="active" onclick="event.stopPropagation(); $(this).parent().parent().find('.batch_window').hide(); $(this).parent().parent().find('.batch_tokens').show(); $(this).parent().parent().find('.batch_switcher a').removeClass('active'); $(this).parent().parent().find(this).addClass('active'); return false;">
+        <%= locale.get('tokens') %>
+    </a>
+    
+    <a href="#" onclick="event.stopPropagation(); $(this).parent().parent().find('.batch_window').hide(); $(this).parent().parent().find('.batch_specials').show(); $(this).parent().parent().find('.batch_switcher a').removeClass('active'); $(this).parent().parent().find(this).addClass('active'); return false;">
+        <%= locale.get('specials') %>
+    </a>
+</div>
+
+<div class="batch_window batch_tokens" style="display: block;">
+    
+    <% if (tokens.valid.length) { %>
+        <div class="batch_tokens_title"><%= locale.get('valid') %></div>
+        <% _.each(tokens.valid, function(item) { %>
+            <span><%= item %></span>
+        <% }); %>
+    <% } %>
+    
+    <% if (tokens.used.length) { %>
+        <div class="batch_tokens_title"><%= locale.get('used') %></div>
+        <% _.each(tokens.used, function(item) { %>
+            <span><%= item %></span>
+        <% }); %>
+    <% } %>
+    
+    <div class="info_buttons">
+        <% if (active) { %>
+            <a href="#" class="left red batch_deactivate" onclick="return false"><%= locale.get('deactivate') %></a>
+            
+            <a href="/csv/tokens/<%= id %>" class="right" target="_blank"><%= locale.get('get_csv') %></a>
+            <a href="#" class="right blue print" onclick="return false"><%= locale.get('print') %></a>
+        <% } else { %>
+            <a href="#" class="left batch_activate" onclick="return false"><%= locale.get('activate') %></a>
+        <% } %>
+        
+        
+    </div>
+
+</div>
+
+<div class="batch_window batch_specials">
+    
+    <% _.each(specials, function(item) { %>
+        <a href="#!/special/<%= item.id %>"><%= item.id %></a>
+    <% }); %>
+    
+    <div class="info_buttons">
+        <% if (active) { %>
+            <a href="#" class="left red batch_deactivate" onclick="return false"><%= locale.get('deactivate') %></a>
+        <% } else { %>
+            <a href="#" class="left batch_activate" onclick="return false"><%= locale.get('activate') %></a>
+        <% } %>
+    </div>
+    
+</div>
+

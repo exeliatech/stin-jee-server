@@ -1,0 +1,32 @@
+<% if (typeof image !== 'undefined' && image) { %>
+    <img src="<%= image %>" class="specials_info_img" />
+<% } %>
+
+<div class="specials_info_content">
+    <span><%= locale.get('address') %>: </span> 
+    <% if (addres) { %>
+        <%= addres %>
+    <% } else { %>
+        <%= locale.get('not_specified') %>
+    <% } %>
+    <br/>
+    <span><%= locale.get('phone') %>: </span> 
+    <% if (phone) { %>
+        <%= phone %>
+    <% } else { %>
+        <%= locale.get('not_specified') %>
+    <% } %>
+    <br/>
+    <br/>
+    
+    <% if (typeof description !== 'undefined' && description) { %>
+        <%= description.replace(/(?:\r\n|\r|\n)/g, '<br />') %>
+    <% } %>
+    
+</div>
+
+<% if (typeof endsAt !== 'undefined' &&  new Date(endsAt).getTime() < new Date().getTime()) { %>
+    <div class="info_buttons">
+        <a href="#!/special/reuse/<%= id %>" class="right"><%= locale.get('reuse') %></a>
+    </div>
+<% } %>

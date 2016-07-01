@@ -1,0 +1,46 @@
+<div class="list">
+    
+    <div class="start_title">
+        <%= locale.get('do_not_forget_these_tokens', [batch.tokens.length]) %>
+    </div>
+    
+    <div class="batch_window batch_tokens" style="display: block;">
+    
+        <div class="batch_item" id="<%= batch.id %>">
+
+                <div class="specials_name" style="width: 280px; color: #75ad45;">
+                    <%= locale.get('batch_id') %>: <%= batch.id %>
+                </div>
+
+                <div class="separator"></div>
+
+                <div class="specials_created_at"> 
+                    <%= locale.get('created_at') %> <%= moment(batch.createdAt.iso, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').format('D MMMM YYYY') %>
+                </div>
+
+                <div class="separator"></div>
+
+                <div class="specials_tokens" >
+                        <%= batch.tokens.length %> <%= locale.get('active_tokens') %>
+                </div>
+
+                <div class="specials_full_info" onclick="event.stopPropagation();" style="display: block;">
+                    <% if (batch.tokens.length) { %>
+                        <% _.each(batch.tokens, function(item) { %>
+                            <span><%= item %></span>
+                        <% }); %>
+                    <% } %>
+
+                    <div class="info_buttons">
+
+                        <a href="/csv/tokens/<%= batch.id %>?purchased=1&transaction=<%= transaction %>" class="right" target="_blank"><%= locale.get('get_csv') %></a>
+                            <a href="#" class="right blue print" onclick="return false"><%= locale.get('print') %></a>
+
+                    </div>
+                </div>
+
+            </div>
+    </div>
+</div>
+
+

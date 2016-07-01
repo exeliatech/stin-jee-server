@@ -1,0 +1,34 @@
+<% if ( state !== 'new_specials' && state !== 'batch_not_found') { %>
+    
+    <% if ( (typeof batch != 'undefined' && batch != null) && state !== 'start') { %>
+        <a href="#!/new_specials" class="new_special_button">
+            <span><%= locale.get('add_new_special') %></span>
+            <%= locale.get('you_have_x_more_tokens', [(typeof batch === 'undefined' || typeof batch.get === 'undefined' || typeof batch.get('specialsNum') === 'undefined' || typeof batch.get('tokensNum') === 'undefined' || batch.get('specialsNum') >  batch.get('tokensNum') ? 0 : batch.get('tokensNum') - batch.get('specialsNum'))]) %>
+        </a>
+    <% } %>
+
+    <% if (state !== 'get_more_tokens') { %>
+        <a href="#!/get_more_tokens" class="new_special_button get_more_tokens" <% if (state === 'start') { %>style="left: 10px;"<% } %>>
+            <span><%= locale.get('get_more_tokens') %></span>
+        </a>
+    <% } %>
+<% } %>
+
+<a href="#!/" class="logo"></a>
+
+<span class="slogan">
+    <%= locale.get('eat_drink_for_less') %>
+</span>  
+
+<div class="language_selector">
+    <%= locale.get('language') %>: <span><%= locale.get(locale.getCurrent()) %></span>
+    <ul>
+        <%
+            _.each(locale.getList(), function(item, key, list) {
+        %>
+            <li data-value="<%= item %>"><%= locale.get(item) %></li>
+        <%
+            });
+        %>
+    </ul>
+</div>

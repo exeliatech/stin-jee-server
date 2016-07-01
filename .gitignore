@@ -1,0 +1,8 @@
+nbproject
+.idea
+.sublime-project
+.sublime-workspace
+.DS_Store
+/vendor
+.env
+composer.lock

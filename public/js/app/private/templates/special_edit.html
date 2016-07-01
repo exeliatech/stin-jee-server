@@ -1,0 +1,177 @@
+<div class="list new_special">
+    <div class="list_header"><%= locale.get('review_special') %></div>
+
+    <input type="hidden" id="specials_created_at" value="<%= special.createdAt %>"  />
+    <input type="hidden" id="specials_updated_at" value="<%= special.updatedAt %>" />
+    
+    <div class="field">
+        <a href="#" class="q" onclick=" var el = $(this).parent().find('.tooltip'); if (el.is(':visible')) $('.tooltip').hide(); else { $('.tooltip').hide(); el.show(); } return false; "></a>
+        <div class="tooltip">
+            <%= locale.get('name_field_tooltip') %>
+            <div></div>
+        </div>
+        <label for="specials_name"><%= locale.get('special_name') %></label>
+        <input type="text" id="specials_name" value="<%= special.name %>"  placeholder="Enter a title" />
+    </div>
+    
+    <div class="field">
+        <a href="#" class="q" onclick=" var el = $(this).parent().find('.tooltip'); if (el.is(':visible')) $('.tooltip').hide(); else { $('.tooltip').hide(); el.show(); } return false; "></a>
+        <div class="tooltip">
+            <%= locale.get('description_field_tooltip') %>
+            <div></div>
+        </div>
+        <label for="specials_description"><%= locale.get('description') %></label>
+        <textarea id="specials_description"  placeholder="Enter a description"><%= special.description %></textarea>
+    </div>
+
+    <div class="field">
+        <a href="#" class="q" onclick=" var el = $(this).parent().find('.tooltip'); if (el.is(':visible')) $('.tooltip').hide(); else { $('.tooltip').hide(); el.show(); } return false; "></a>
+        <div class="tooltip">
+            <%= locale.get('store_field_tooltip') %>
+            <div></div>
+        </div>
+        <label for="specials_name"><%= locale.get('store_name') %></label>
+        <input type="text" id="specials_store" value="<%= special.storeName %>" />
+        
+        <div class="map">
+            <div id="map"></div>
+            <div class="foreground"></div>
+        </div>
+    </div>
+
+    <div class="field">
+        <a href="#" class="q" onclick=" var el = $(this).parent().find('.tooltip'); if (el.is(':visible')) $('.tooltip').hide(); else { $('.tooltip').hide(); el.show(); } return false; "></a>
+        <div class="tooltip">
+            <%= locale.get('address_field_tooltip') %>
+            <div></div>
+        </div>
+        <label for="specials_addres"><%= locale.get('address') %></label>
+        <input type="text" id="specials_addres" value="<%= special.addres %>"  placeholder="London, England" />
+        <input type="hidden" id="specials_country" value="<%= special.country %>" />
+        <input type="hidden" id="specials_country_code" value="<%= special.country_code %>" />
+    </div>
+
+    <div class="field">
+       <a href="#" class="q" onclick=" var el = $(this).parent().find('.tooltip'); if (el.is(':visible')) $('.tooltip').hide(); else { $('.tooltip').hide(); el.show(); } return false; "></a>
+        <div class="tooltip">
+            <%= locale.get('website_field_tooltip') %>
+            <div></div>
+        </div>
+        <label for="specials_website"><%= locale.get('website') %></label>
+        <input type="text" id="specials_website" value="<%= special.site %>" placeholder="http://" />
+    </div>
+
+    <!--<div class="field">
+        <a href="#" class="q" onclick=" var el = $(this).parent().find('.tooltip'); if (el.is(':visible')) $('.tooltip').hide(); else { $('.tooltip').hide(); el.show(); } return false; "></a>
+        <div class="tooltip">
+            <%= locale.get('facebook_field_tooltip') %>
+            <div></div>
+        </div>
+        <label for="specials_facebook"><%= locale.get('facebook_page') %></label>
+        <input type="text" id="specials_facebook" value="<%= special.facebook %>" placeholder="http://" />
+    </div>-->
+
+    <div class="field">
+        <a href="#" class="q" onclick=" var el = $(this).parent().find('.tooltip'); if (el.is(':visible')) $('.tooltip').hide(); else { $('.tooltip').hide(); el.show(); } return false; "></a>
+        <div class="tooltip">
+            <%= locale.get('phone_field_tooltip') %>
+            <div></div>
+        </div>
+        <label for="specials_phone"><%= locale.get('phone_number') %></label>
+        <input type="text" id="specials_phone" value="<%= special.phone %>" placeholder="" />
+    </div>
+
+    <div class="field">
+        <a href="#" class="q" onclick=" var el = $(this).parent().find('.tooltip'); if (el.is(':visible')) $('.tooltip').hide(); else { $('.tooltip').hide(); el.show(); } return false; "></a>
+        <div class="tooltip">
+            <%= locale.get('image_field_tooltip') %>
+            <div></div>
+        </div>
+        <label for="specials_image"><%= locale.get('image') %></label>
+        
+        <div class="image_holder">
+            <input type="file" id="specials_image" value="" />
+            
+            <% if (special.image) { %>
+                <div class="image">
+                    <img src="<%= special.image %>" />
+                    <i onclick="$('.image').remove();">x</i>
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+    <div class="field">
+        <a href="#" class="q" onclick=" var el = $(this).parent().find('.tooltip'); if (el.is(':visible')) $('.tooltip').hide(); else { $('.tooltip').hide(); el.show(); } return false; "></a>
+        <div class="tooltip">
+            <%= locale.get('store_logo_field_tooltip') %>
+            <div></div>
+        </div>
+        <label for="specials_store_logo"><%= locale.get('store_logo') %></label>
+        
+        <div class="image_holder store_logo_holder">
+            <input type="file" id="specials_store_logo" value="" />
+            
+            <% if (special.store_logo) { %>
+                <div class="image_store">
+                    <div class="image_wrapper" style="background: <% if (special.store_logo_bg) { %><%= special.store_logo_bg %><% } else { %>#ffffff<% } %>">
+                        <span></span>
+                        <img src="<%= special.store_logo %>" />
+                    </div>
+                    <i onclick="$('.image_store').remove();">x</i>
+                </div>
+            <% } %>
+        </div>
+    </div>
+    
+    <div class="field">
+        <a href="#" class="q" onclick=" var el = $(this).parent().find('.tooltip'); if (el.is(':visible')) $('.tooltip').hide(); else { $('.tooltip').hide(); el.show(); } return false; "></a>
+        <div class="tooltip">
+            <%= locale.get('store_logo_bg_field_tooltip') %>
+            <div></div>
+        </div>
+        <label for="store_logo_bg"><%= locale.get('store_logo_bg') %></label>
+        <input type="text" id="store_logo_bg" value="<% if (special.store_logo_bg) { %><%= special.store_logo_bg %><% } else { %>#ffffff<% } %>"  readonly />
+    </div>
+    
+    
+    <div class="field">
+        <a href="#" class="q" onclick=" var el = $(this).parent().find('.tooltip'); if (el.is(':visible')) $('.tooltip').hide(); else { $('.tooltip').hide(); el.show(); } return false; "></a>
+        <div class="tooltip">
+            <%= locale.get('admin_field_tooltip') %>
+            <div></div>
+        </div>
+        <label><%= locale.get('let_admin_choose_photo') %></label>
+        <input type="checkbox" id="specials_admin_image" value="" onclick="return false" style="opacity: 0.5" disabled <% if (special.letAdminChooseImage) { %> checked <% } %>/>
+    </div>    
+
+    <div class="field">
+        <a href="#" class="q" onclick=" var el = $(this).parent().find('.tooltip'); if (el.is(':visible')) $('.tooltip').hide(); else { $('.tooltip').hide(); el.show(); } return false; "></a>
+        <div class="tooltip">
+            <%= locale.get('valid_for_field_tooltip') %>
+            <div></div>
+        </div>
+        <label for="specials_image"><%= locale.get('valid_for_days') %></label>
+        <select id="specials_days">
+            <option <% if (special.validFor === 120) { %> selected <% } %>>120</option>
+            <option <% if (special.validFor === 90) { %> selected <% } %>>90</option>
+            <option <% if (special.validFor === 60) { %> selected <% } %>>60</option>
+            <option <% if (special.validFor === 30) { %> selected <% } %>>30</option>
+            <option <% if (special.validFor === 21) { %> selected <% } %>>21</option>
+            <option <% if (special.validFor === 14) { %> selected <% } %>>14</option>
+            <option <% if (special.validFor === 7) { %> selected <% } %>>7</option>
+            <option <% if (special.validFor === 6) { %> selected <% } %>>6</option>
+            <option <% if (special.validFor === 5) { %> selected <% } %>>5</option>
+            <option <% if (special.validFor === 4) { %> selected <% } %>>4</option>
+            <option <% if (special.validFor === 3) { %> selected <% } %>>3</option>
+            <option <% if (special.validFor === 2) { %> selected <% } %>>2</option>
+            <option <% if (special.validFor === 1) { %> selected <% } %>>1</option>
+        </select>
+    </div>
+    
+
+    <div class="field_buttons">
+        <a href="#" class="button decline_button" onclick="return false" id="<%= special.id %>"><%= locale.get('decline') %></a> 
+        <input type="button" id="specials_confirm" class="aprove_button" value="<%= locale.get('approve') %>" style="width: 80px;" />
+    </div>
+</div>

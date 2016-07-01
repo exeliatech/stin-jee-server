@@ -1,0 +1,44 @@
+<div class="bulk_results">
+    
+    <div class="list_header">
+        <%= locale.get('bulk_upload_results') %>
+    </div>
+    
+    <% if (!data.success.length) { %>
+        <center><%= locale.get('no_specials_imported') %></center>  
+        <br/><br/><br/>
+    <% } %>
+    
+    <% if (data.success.length) { %>
+        <div class="batch_window batch_tokens bulk_success" style="display: block">
+            <div class="batch_tokens_title">
+                <%= locale.get('specials_added') %>
+            </div>
+            
+            <% _.each(data.success, function(item) { %>
+                <span><%= item || locale.get('not_specified') %></span>
+            <% }); %>
+        </div>
+    <% } %>
+    
+    <% _.each(data.errors, function(arr, n) { %>
+    
+        <% if (arr.length) { %>
+            <div class="batch_window batch_tokens" style="display: block">
+                <div class="batch_tokens_title">
+                    <%= locale.get('specials_not_added_' + n) %>
+                </div>
+
+                <% _.each(arr, function(item) { %>
+                    <span><%= item || locale.get('not_specified') %></span>
+                <% }); %>
+            </div>
+        <% } %>
+    
+    <% }); %>
+    
+    <div style="text-align: center;">
+        <a href="/private" class="button" style="margin-top: 60px;display: inline-block; padding: 8px 20px;border-radius: 4px;"><%= locale.get('ok_go_back') %></a>
+    </div>
+    
+</div>

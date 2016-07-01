@@ -1,0 +1,53 @@
+<div class="list">
+    <div class="list_header">Batch ID: <%= batch.id %></div>
+
+    <div class="menu">
+        <a href="#" onclick="$('.menu a').removeClass('active'); $(this).addClass('active'); $('.specials_list').hide(); $('.specials_list_tokens').show(); return false" class="active">Tokens</a>
+        <a href="#" onclick="$('.menu a').removeClass('active'); $(this).addClass('active'); $('.specials_list').hide(); $('.specials_list_specials').show(); return false">Specials</a>
+    </div>
+
+    <div class="specials_list specials_list_tokens" style="display: block;">
+        <%
+            _.each(batch.get('tokens'), function(item, key, list) {
+        %>
+
+            <div class="specials_item">
+                <div class="specials_name">
+                    <%= key + 1 %>. <%= item %>
+                </div>
+
+                <div class="specials_actions">
+                    <!--<a href="#" onclick="return false" id="<%= item %>">remove</a>-->
+                </div>
+            </div>
+
+        <%    
+            });
+        %>
+    </div>
+
+    <div class="specials_list specials_list_specials">
+        <%
+            _.each(batch.get('specials'), function(item, key, list) {
+        %>
+
+            <div class="specials_item">
+                <div class="specials_name">
+                    <% if (item.smallImage) { %>
+                            <img src="<%= item.smallImage %>" style="width: 50px; height: 30px; margin-right: 10px; vertical-align: middle;" />
+                    <% } %>
+                    <%- item.name %>
+                </div>
+
+                <div class="specials_actions">
+                    <a href="#" onclick="return false" id="<%= item.id %>">view</a>
+                </div>
+            </div>
+
+        <%    
+            });
+        %>
+    </div>
+
+
+</div>

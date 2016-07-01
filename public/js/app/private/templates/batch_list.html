@@ -1,0 +1,54 @@
+<div class="list">
+
+    <div class="menu menu_left">
+        <a href="#!/specials_list" class="black"><%= locale.get('specials') %></a>
+        <a href="#!/batch_list" class="black active"><%= locale.get('batch_list') %></a>
+    </div>
+
+    <div class="specials_list specials_list_all" style="display: block;">
+        <%
+            if (batchList.length) { 
+                batchList.each(function(item, key, list) {
+        %>
+
+            <div class="batch_item <% if (!item.get('active')) {%> deactivated <% } %>" id="<%= item.id  %>" >
+
+                <div class="specials_name" style="width: 280px">
+                    <%= item.id %>
+                </div>
+
+                <div class="separator"></div>
+
+                <div class="specials_created_at"> 
+                    <%= locale.get('created_at') %> <%= moment(item.get('createdAt'), 'YYYY-MM-DD\THH:mm:ss.SSS\Z').format('D MMMM YYYY') %>
+                </div>
+
+                <div class="separator"></div>
+
+                <div class="specials_tokens <% if (item.get('tokens').length == item.get('specials').length) { %> specials_tokens_empty <% } %>" >
+                     <% if (item.get('tokens').length == item.get('specials').length) { %>
+                        <%= locale.get('no_active_tokens') %>
+                     <% } else { %>
+                        <% if (item.get('tokens').length - item.get('specials').length > 0) { %><%= item.get('tokens').length - item.get('specials').length %> <% } else { %> 0 <% } %> <%= locale.get('active_tokens') %>
+                     <% } %>
+                </div>
+
+                <div class="specials_full_info" onclick="event.stopPropagation();">
+
+                </div>
+
+            </div>
+
+        <%
+                });
+        %>
+        
+            <% if (batchList.length === 20) { %><button class="button load_more" id="batch_load_more"><%= locale.get('load_more') %></button><% } %>
+        
+        <%
+                
+            }
+        %>
+    </div>
+
+</div>

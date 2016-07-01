@@ -1,0 +1,54 @@
+<div class="list">
+
+    <div class="menu menu_right">
+        
+        <a href="#!/managers/new" class="active"><%= locale.get('new_manager') %></a>
+        
+    </div>
+
+    <div class="specials_list specials_list_all" style="display: block;">
+        <%
+            if (managers.length) { 
+                _.each(managers, function(item, key, list) {
+        %>
+
+            <a href="#!/managers/edit/<%= item.id  %>" class="batch_item">
+
+                <div class="specials_name" style="width: 210px">
+                    <%= item.name %>
+                </div>
+
+                <div class="separator"></div>
+
+                <div class="specials_created_at"> 
+                    <%= countries[item.country.toUpperCase()] %>
+                </div>
+
+                <div class="separator"></div>
+
+                <div class="specials_tokens" style="text-align: left; width: 234px;">
+                    <%= item.email %>
+                    
+                    <span style="float: right; color: orange;" id="<%= item.id  %>" class="delete_manager">(<%= locale.get('delete') %>)</span>
+                </div>
+
+            </a>
+
+        <%
+                });
+        %>
+        
+            <% if (managers.length === 20) { %><button class="button load_more" id="manager_load_more"><%= locale.get('load_more') %></button><% } %>
+        
+        <%
+                
+            } else { %>
+            
+                <%= locale.get('no_managers') %>
+                
+        <%  }
+            
+        %>
+    </div>
+
+</div>

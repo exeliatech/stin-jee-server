@@ -1,0 +1,326 @@
+<div class="list">
+
+    <div class="menu menu_left">
+        <a href="#" onclick="return false" class="black active" style="cursor: default"><%= locale.get('specials') %></a>
+    </div>
+    
+    <div class="menu menu_right">
+        <a href="#!/specials_list/0" class="yellow"><%= locale.get('all') %></a>
+                            
+        <a href="#!/specials_list/1"><%= locale.get('active') %></a>
+        
+        <a href="#!/specials_list/2" class="blue"><%= locale.get('queued') %></a>
+        
+        <a href="#!/specials_list/3" class="grey"><%= locale.get('declined') %></a>
+        
+        <a href="#!/specials_list/4" class="red"><%= locale.get('expired') %></a>
+        
+    </div>
+
+    <div class="specials_list specials_list_all">
+        <%
+        if (batch.get('specials').all.length) { 
+        _.each(batch.get('specials').all, function(item, key, list) {
+        %>
+
+        <div class="specials_item" id="<%= item.id  %>" >
+            
+            <div class="specials_name">
+                <% if (item.image) { %>
+                    <img src="<%= item.image %>" />
+                <% } %>
+                <%- _.truncate(item.name,24)  %>
+            </div>
+             
+            <div class="separator"></div>
+             
+            <div class="specials_store_name"> 
+                <% if (item.store_name) { %>
+                    <%= _.truncate(item.store_name, 11) %>
+                <% } else { %>
+                    <%= locale.get('unknown_store') %>
+                <% } %>
+            </div>
+            
+            <div class="separator"></div>
+            
+            <div class="specials_website">
+                <% if (item.website) { %>
+                    <a href="<%= item.website %>" target="_blank"><%= _.truncate(item.website, 24)  %></a>
+                <% } else { %>
+                    <%= locale.get('no_website') %>
+                <% } %>
+            </div>
+            
+            <div class="separator"></div>
+            
+            <div class="specials_date <% if (new Date().getTime() > moment(item.endsAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').valueOf()) {%> specials_expired<% } %>"><%= moment(item.createdAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').format('D MMMM YYYY') %></div>
+            
+            <div class="specials_full_info">
+                
+            </div>
+            
+        </div>
+
+        <%
+        });
+        
+        if (batch.get('specials').all.length >= 20) { %><button class="button load_more" id="specials_all_load_more"><%= locale.get('load_more') %></button><% }
+        
+        
+        } else {
+        %>
+
+        <div class="no_specials"><%= locale.get('no_specials') %></div>
+
+        <%
+        } 
+        %>
+    </div>
+
+    <div class="specials_list specials_list_active">
+        <%
+        if (batch.get('specials').active.length) { 
+        _.each(batch.get('specials').active, function(item, key, list) {
+        if (item.status != 1) return; 
+        %>
+
+        <div class="specials_item" id="<%= item.id  %>">
+            <div class="specials_name">
+                <% if (item.image) { %>
+                    <img src="<%= item.image %>" />
+                <% } %>
+                <%- _.truncate(item.name,24)  %>
+            </div>
+             
+            <div class="separator"></div>
+             
+            <div class="specials_store_name"> 
+                <% if (item.store_name) { %>
+                    <%= _.truncate(item.store_name, 11) %>
+                <% } else { %>
+                    <%= locale.get('unknown_store') %>
+                <% } %>
+            </div>
+            
+            <div class="separator"></div>
+            
+            <div class="specials_website">
+                <% if (item.website) { %>
+                    <a href="<%= item.website %>" target="_blank"><%= _.truncate(item.website, 24)  %></a>
+                <% } else { %>
+                    <%= locale.get('no_website') %>
+                <% } %>
+            </div>
+            
+            <div class="separator"></div>
+            
+            <div class="specials_date <% if (new Date().getTime() > moment(item.endsAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').valueOf()) {%> specials_expired<% } %>"><%= moment(item.createdAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').format('D MMMM YYYY') %></div>
+            
+            
+            <div class="specials_full_info">
+                
+            </div>
+        </div>
+
+        <%
+        });
+        
+        if (batch.get('specials').active.length >= 20) { %><button class="button load_more" id="specials_active_load_more"><%= locale.get('load_more') %></button><% }
+        
+        
+        } else {
+        %>
+
+        <div class="no_specials"><%= locale.get('no_active_specials') %></div>
+
+        <%
+        } 
+        %>
+    </div>
+
+    <div class="specials_list specials_list_queued">
+        <%
+        if (batch.get('specials').queued.length) { 
+        _.each(batch.get('specials').queued, function(item, key, list) {
+        if (item.status != 0) return; 
+        %>
+
+        <div class="specials_item" id="<%= item.id  %>">
+            <div class="specials_name">
+                <% if (item.image) { %>
+                    <img src="<%= item.image %>" />
+                <% } %>
+                <%- _.truncate(item.name,24)  %>
+            </div>
+             
+            <div class="separator"></div>
+             
+            <div class="specials_store_name"> 
+                <% if (item.store_name) { %>
+                    <%= _.truncate(item.store_name, 11) %>
+                <% } else { %>
+                    <%= locale.get('unknown_store') %>
+                <% } %>
+            </div>
+            
+            <div class="separator"></div>
+            
+            <div class="specials_website">
+                <% if (item.website) { %>
+                    <a href="<%= item.website %>" target="_blank"><%= _.truncate(item.website, 24)  %></a>
+                <% } else { %>
+                    <%= locale.get('no_website') %>
+                <% } %>
+            </div>
+            
+            <div class="separator"></div>
+            
+            <div class="specials_date <% if (new Date().getTime() > moment(item.endsAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').valueOf()) {%> specials_expired<% } %>"><%= moment(item.createdAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').format('D MMMM YYYY') %></div>
+            
+            
+            <div class="specials_full_info">
+                
+            </div>
+        </div>
+
+        <%
+        
+        });
+        
+        if (batch.get('specials').queued.length >= 20) { %><button class="button load_more" id="specials_queued_load_more"><%= locale.get('load_more') %></button><% }
+        
+        
+        } else {
+        %>
+
+        <div class="no_specials"><%= locale.get('no_queued_specials') %></div>
+
+        <%
+        } 
+        %>
+    </div>
+
+    <div class="specials_list specials_list_declined">
+        <%
+        if (batch.get('specials').declined.length) { 
+        _.each(batch.get('specials').declined, function(item, key, list) {
+        if (item.status != 2) return; 
+        %>
+
+        <div class="specials_item" id="<%= item.id  %>" >
+            <div class="specials_name">
+                <% if (item.image) { %>
+                    <img src="<%= item.image %>" />
+                <% } %>
+                <%- _.truncate(item.name,24)  %>
+            </div>
+             
+            <div class="separator"></div>
+             
+            <div class="specials_store_name"> 
+                <% if (item.store_name) { %>
+                    <%= _.truncate(item.store_name, 11) %>
+                <% } else { %>
+                    <%= locale.get('unknown_store') %>
+                <% } %>
+            </div>
+            
+            <div class="separator"></div>
+            
+            <div class="specials_website">
+                <% if (item.website) { %>
+                    <a href="<%= item.website %>" target="_blank"><%= _.truncate(item.website, 24)  %></a>
+                <% } else { %>
+                    <%= locale.get('no_website') %>
+                <% } %>
+            </div>
+            
+            <div class="separator"></div>
+            
+            <div class="specials_date <% if (new Date().getTime() > moment(item.endsAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').valueOf()) {%> specials_expired<% } %>"><%= moment(item.createdAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').format('D MMMM YYYY') %></div>
+            
+            
+            <div class="specials_full_info">
+                
+            </div>
+        </div>
+
+        <%
+        });
+        
+        if (batch.get('specials').declined.length >= 20) { %><button class="button load_more" id="specials_declined_load_more"><%= locale.get('load_more') %></button><% }
+        
+        
+        } else {
+        %>
+
+            <div class="no_specials"><%= locale.get('no_declined_specials') %></div>
+
+        <%
+        } 
+        %>
+    </div>
+    
+    <div class="specials_list specials_list_expired">
+        <%
+        if (batch.get('specials').expired.length) { 
+            _.each(batch.get('specials').expired, function(item, key, list) {
+        
+        %>
+
+        <div class="specials_item" id="<%= item.id  %>" >
+            <div class="specials_name">
+                <% if (item.image) { %>
+                    <img src="<%= item.image %>" />
+                <% } %>
+                <%- _.truncate(item.name,24)  %>
+            </div>
+             
+            <div class="separator"></div>
+             
+            <div class="specials_store_name"> 
+                <% if (item.store_name) { %>
+                    <%= _.truncate(item.store_name, 11) %>
+                <% } else { %>
+                    <%= locale.get('unknown_store') %>
+                <% } %>
+            </div>
+            
+            <div class="separator"></div>
+            
+            <div class="specials_website">
+                <% if (item.website) { %>
+                    <a href="<%= item.website %>" target="_blank"><%= _.truncate(item.website, 24)  %></a>
+                <% } else { %>
+                    <%= locale.get('no_website') %>
+                <% } %>
+            </div>
+            
+            <div class="separator"></div>
+            
+            <div class="specials_date <% if (new Date().getTime() > moment(item.endsAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').valueOf()) {%> specials_expired<% } %>"><%= moment(item.createdAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').format('D MMMM YYYY') %></div>
+            
+            
+            <div class="specials_full_info">
+                
+            </div>
+        </div>
+
+        <%
+        });
+        
+        if (batch.get('specials').expired.length >= 20) { %><button class="button load_more" id="specials_expired_load_more"><%= locale.get('load_more') %></button><% }
+        
+        
+        } else {
+        %>
+
+            <div class="no_specials"><%= locale.get('no_expired_specials') %></div>
+
+        <%
+        } 
+        %>
+    </div>
+    
+</div>

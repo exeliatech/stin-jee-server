@@ -1,0 +1,69 @@
+<div class="list">
+
+    <div class="specials_list specials_list_all" style="display: block;">
+        <%
+            if (transactions.length) { 
+                _.each(transactions, function(item, key, list) {
+        %>
+
+            <div class="batch_item">
+
+                <div class="specials_name" style="width: 138px; font-size: 10px;">
+                    <%= item.createdAt %> 
+                </div>
+                
+                <div class="separator"></div>
+                
+                <div class="specials_name" style="width: 125px; white-space: nowrap; overflow: hidden;">
+                    <%= item.person %> 
+                    <% if (item.country) { %> [<%= item.country %>] <% } %>
+                </div>
+
+                <div class="separator"></div>
+
+                <div class="specials_created_at" style="width: 80px;"> 
+                    <% if (item.batch_id) { %> <%= item.batch_id %> <% } else { %> --- <% } %> 
+                </div>
+
+                <div class="separator"></div>
+
+                <div class="specials_name" style=" width: 140px; position: relative;">
+                    <% if (item.email) { %> 
+                        <a href="#" onclick="$(this).parent().find('.status_tooltip').toggle(); return false" style="width: 100%; overflow: hidden; display: inline-block;">
+                            <%= item.email %>
+                        </a>
+                    <% } else { %> 
+                        --- 
+                    <% } %> 
+                    
+                    <div class="status_tooltip" style="padding: 10px;">
+                        <%= item.email %>
+                    </div>
+                </div>
+                
+                <div class="separator"></div>
+
+                <div class="specials_tokens" style=" width: 54px; white-space: nowrap;">
+                    <% if (item.amount) { %> <%= item.amount %> <% } else { %> --- <% } %> E
+                </div>
+
+            </div>
+
+        <%
+                });
+        %>
+        
+            <% if (transactions.length === 20) { %><button class="button load_more" id="transaction_load_more"><%= locale.get('load_more') %></button><% } %>
+        
+        <%
+                
+            } else { %>
+            
+                <%= locale.get('no_transactions') %>
+                
+        <%  }
+            
+        %>
+    </div>
+
+</div>

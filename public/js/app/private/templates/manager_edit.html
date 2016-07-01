@@ -1,0 +1,54 @@
+<div class="list new_special">
+    <div class="list_header"><%= locale.get('edit_manager') %></div>
+
+    <div class="field">
+        <label for="manager_name"><%= locale.get('manager_name') %></label>
+        <input type="text" id="manager_name" value="<%= manager.name %>"  placeholder="Enter manager name" />
+    </div>
+
+    <div class="field">
+        <label for="manager_email"><%= locale.get('manager_email') %></label>
+        <input type="text" id="manager_email" value="<%= manager.email %>"  placeholder="Enter manager email" />
+    </div>
+
+    <div class="field">
+        <label for="manager_country"><%= locale.get('manager_country') %></label>
+        
+        <select id="manager_country">
+            <% 
+                _.each(countries, function(item, key, list) {
+            %>
+                <option value="<%= key%>" <% if (key == manager.country) { %> selected <% } %> ><%= locale.get(item) %></option>
+            <%
+                });
+            %>
+        </select>
+    </div>
+
+    <div class="field_buttons">
+        <a href="#!/managers" class="button"><%= locale.get('cancel') %></a> 
+        <input type="button" id="manager_save" class="specials_confirm" value="<%= locale.get('save') %>" style="width: 80px;" />
+    </div>
+    
+    <br/><br/><br/><br/>
+    
+    <div class="field">
+        <label><%= locale.get('used_tokens') %></label>
+        <span><%= manager.used_tokens %> <%= locale.get('tokens') %></span>
+    </div>
+    
+    <div class="field">
+        <label><%= locale.get('reserved_tokens') %> </label>
+        <span><%= manager.reserved_tokens %> <%= locale.get('tokens') %></span>
+    </div>
+    
+    <div class="field">
+        <label for="manager_tokens"><%= locale.get('reserve_tokens') %></label>
+        <input type="text" id="manager_tokens" value="10"  placeholder="Enter tokens number" />
+    </div>
+
+    <div class="field_buttons">
+        <input type="button" id="reserve_tokens" class="specials_confirm" value="<%= locale.get('reserve') %>" style="width: 80px;" />
+    </div>
+
+</div>

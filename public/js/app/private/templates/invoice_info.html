@@ -1,0 +1,49 @@
+<div class="transaction-item transaction-item-header">
+        <span class="transaction-item-date">
+            <%= locale.get('date') %>
+        </span>
+        <span class="transaction-item-id">
+            <%= locale.get('id') %>
+        </span>
+        <span class="transaction-item-buyer">
+            <%= locale.get('buyer') %>
+        </span>
+        <span class="transaction-item-how-sold">
+            <%= locale.get('how_sold') %>
+        </span>
+        <span class="transaction-item-tokens">
+            <%= locale.get('tokens') %>
+        </span>
+        <span class="transaction-item-price">
+            <%= locale.get('price') %>
+        </span>
+    </div>
+
+<% _.each(transactions, function(item) { %>
+    <div class="transaction-item">
+        <span class="transaction-item-date">
+            <%= item.date %>
+        </span>
+        <span class="transaction-item-id">
+            <%= item.id %>
+        </span>
+        <span class="transaction-item-buyer">
+            <%= item.buyer.name %> (<%= item.buyer.email %>)
+        </span>
+        <span class="transaction-item-how-sold">
+            <% if (item.online == true) { %> Online <% } else { %>Offline <% } %>
+        </span>
+        <span class="transaction-item-tokens">
+            <%= item.local.tokens %> (<%= item.general.tokens %>)
+        </span>
+        <span class="transaction-item-price">
+            <%= item.local.amount %> (<%= item.general.amount %>)
+        </span>
+        <div class="transaction-item-all-tokens">
+            <span style="width: 200px;">Batch: <b style="font-weight: bold;"><%= item.batch_id %></b></span><br/>
+            <% _.each(item.tokens, function(item, k, v) { %>
+                <span><%= k %></span>
+            <% }); %>
+        </div>
+    </div>
+<% }); %>

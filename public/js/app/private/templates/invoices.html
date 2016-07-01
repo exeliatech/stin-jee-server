@@ -1,0 +1,249 @@
+<div class="invoice_list">
+
+    <div class="menu menu_right">
+        <a href="#" class="active" style="padding: 8px;" onclick=" $('.invoice_tooltip').toggle(); return false;">
+            <%= locale.get('create_invoice_file') %>
+        </a>
+        
+        <div class="invoice_tooltip">
+            <select id="invoice_create_month">
+                <option value="">
+                    Month
+                </option>
+                        
+                <% 
+                    _.each(invoices.months, function(item, key, list) {
+                %>
+                    <option value="<%= item %>">
+                        <%= item %>
+                    </option>
+                <%
+                    });
+                %>
+            </select>
+            <!--<select id="invoice_create_manager">
+                <option value="">
+                    Manager
+                </option>
+                        
+                <% 
+                    _.each(invoices.managers, function(item, key, list) {
+                %>
+                    <option value="<%= item.id %>">
+                        <%= item.name %>
+                    </option>
+                <%
+                    });
+                %>
+            </select>-->
+            <select id="invoice_create_country">
+                <option value="">
+                    Country
+                </option>
+                        
+                <% 
+                    _.each(invoices.countries, function(item, key, list) {
+                %>
+                    <option value="<%= key %>">
+                        <%= locale.get(item) %>
+                    </option>
+                <%
+                    });
+                %>
+            </select>
+            
+            <select id="invoice_create_type">
+                <option value="">
+                    Transaction type
+                </option>
+                <option value="1">
+                    Online
+                </option>
+                <option value="0">
+                    Offline
+                </option>
+            </select>
+            
+            <a href="#" class="active button" id="create_report" style="padding: 8px;" onclick="return false;">
+                <%= locale.get('create') %>
+            </a>
+        </div>
+    </div>
+    
+    <div class="specials_list specials_list_all" style="display: block;">
+        <%
+            if (invoices.items.length) {
+            
+        %>
+        
+            <div class="invoice_item batch_item_header">
+                <div class="specials_name" style="width: 100px;">
+                    <select id="invoice_month" class="batch_item_header-select">
+                        <option value="">
+                            Month
+                        </option>
+                        
+                        <% 
+                            _.each(invoices.months, function(item, key, list) {
+                        %>
+                            <option value="<%= item %>">
+                                <%= item %>
+                            </option>
+                        <%
+                            });
+                        %>
+                    </select>
+                </div>
+
+                <div class="separator"></div>
+
+                <div class="specials_name" style="width: 78px;"> 
+                    <select id="invoice_country" class="batch_item_header-select">
+                        <option value="">
+                            Country
+                        </option>
+                        
+                        <% 
+                            _.each(invoices.countries, function(item, key, list) {
+                        %>
+                            <option value="<%= key %>">
+                                <%= locale.get(item) %>
+                            </option>
+                        <%
+                            });
+                        %>
+                    </select> 
+                </div>
+
+                <div class="separator"></div>
+
+                <div class="specials_name" style="width: 170px;">
+                    <select id="invoice_manager" class="batch_item_header-select">
+                        <option value="">
+                            Manager
+                        </option>
+                        
+                        <% 
+                            _.each(invoices.managers, function(item, key, list) {
+                        %>
+                            <option value="<%= item.email %>">
+                                <%= item.name %>
+                            </option>
+                        <%
+                            });
+                        %>
+                    </select>
+                </div>
+                
+                <div class="separator"></div>
+
+                <div class="specials_name" style=" width: 62px; position: relative;">
+                    Status
+                </div>
+
+                <div class="separator"></div>
+
+                <div class="specials_name" style="width: 76px;">
+                    Tokens
+                </div>
+
+                <div class="separator"></div>
+                
+                <div class="specials_name" style="width: 50px; white-space: nowrap; overflow: hidden;">
+                    Price
+                </div>
+
+            </div>
+        
+        <% 
+                _.each(invoices.items, function(item, key, list) {
+        %>
+
+            <div class="invoice_item invoice_item-item" data-month="<%= item.month %>" data-country="<%= locale.get(item.country) %>" data-manager="<%= item.manager_email %>" data-manager-id="<%= item.manager.objectId %>">
+
+                <div class="specials_name" style="width: 100px;">
+                    <%= item.month %> 
+                </div>
+
+                <div class="separator"></div>
+
+                <div class="specials_name" style="width: 78px;"> 
+                    <%= locale.get(item.country_name) %> 
+                </div>
+
+                <div class="separator"></div>
+
+                <div class="specials_name" style="width: 170px;">
+                    <%= item.manager_email %> 
+                </div>
+                
+                <div class="separator"></div>
+
+                <div class="specials_name" style=" width: 62px; position: relative;">
+                    <a href="#" onclick="$(this).parent().find('.status_tooltip').toggle();  return false" >
+                        <% if (item.status == 0) { %>
+                            <%= locale.get('owing') %>
+                        <% } else if (item.status == 1) { %>
+                            <%= locale.get('invoiced') %>
+                        <% } else if (item.status == 2) { %>
+                            <%= locale.get('paid') %>
+                        <% } %>
+                    </a>
+                    
+                    <div class="status_tooltip" data-status="<%= item.status %>">
+                        <select data-invoice="<%= item.objectId %>" class="status_select">
+                            <option value="0" <% if (item.status == 0) { %>selected <% } %>>
+                                <%= locale.get('owing') %>
+                            </option>
+                            <option value="1" <% if (item.status == 1) { %>selected <% } %>>
+                                 <%= locale.get('invoiced') %>
+                            </option>
+                            <option value="2" <% if (item.status == 2) { %>selected <% } %>>
+                                <%= locale.get('paid') %>
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="separator"></div>
+
+                <div class="specials_name" style="width: 76px;">
+                    <%= item.tokens.length %> <%= locale.get('tokens') %>
+                </div>
+
+                <div class="separator"></div>
+                
+                <div class="specials_name" style="width: 50px; white-space: nowrap; overflow: hidden;">
+                    <%= item.price.toFixed(2) %> 
+                </div>
+                
+                <div class="specials_full_info" onclick="event.stopPropagation();">
+                    <div class="batch_window batch_tokens" style="display: block;">
+                        <% _.each(item.tokens, function(item) { %>
+                            <span><%= item %></span>
+                        <% }); %>
+                    </div>
+                </div>
+
+            </div>
+
+        <%
+                });
+        %>
+        
+        
+        <div class="no_invoices" data-month="" data-country="" data-manager=""><%= locale.get('no_invoices') %></div>
+        
+        
+        <%
+                
+            } else { %>
+            
+                <%= locale.get('no_invoices') %>
+                
+        <%  }
+            
+        %>
+    </div>
+
+</div>

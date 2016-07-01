@@ -1,0 +1,70 @@
+<div class="start">
+    <div class="start_title" style="margin: 0 0 12px; font-size: 14px; ">
+        <%= locale.get('please_enter_tokens_number') %>
+    </div>
+
+    <div class="input">
+        <input type="text" id="tokens_num" value="10" />
+        
+        <!--<img src="/i/icon-arrow.svg" id="batch_confirm" alt="" />-->
+        
+        <br /><br />
+        
+    </div>
+    
+    <br/><br/>
+    
+    <div class="start_title" style="margin: 0 0 12px; font-size: 14px; ">
+        <%= locale.get('please_enter_batches_number') %>
+    </div>
+    
+    <div class="input">
+        <input type="text" id="batches_num" value="1" />
+        
+        <br /><br />
+    </div>
+    
+    <br/><br/>
+    
+    <div class="start_title" style="margin: 0 0 12px; font-size: 14px; ">
+        <%= locale.get('please_specify_each_batch_price') %>
+    </div>
+    
+    <div class="input">
+        <input type="text" id="batches_price" value="10.00" />
+        
+        <br /><br />
+    </div>
+    
+    <br/><br/>
+    
+    <div class="start_title" style="margin: 0 0 12px; font-size: 14px; ">
+        <%= locale.get('please_select_manager') %>
+    </div>
+    
+    <div class="input">
+        <select id="batch_manager">
+            <option value=""><%= locale.get('undefined') %></option>
+            <%
+              _.each(managers, function(item, key, list) { 
+            %>
+            <option value="<%= item.id %>"><%= item.name %> (<%= item.country %>)</option>
+            <%
+                });
+            %>              
+        </select>
+        
+        <br /><br />
+        
+        <!--<input type="checkbox" id="single_csv" checked /> <label for="promo_tokens" style="display: inline;"><%= locale.get('output_as_single_file') %></label>-->
+    </div>
+    
+    
+    <div style="text-align: center; margin-top: 50px;">
+        <a href="#" id="batch_confirm" class="button" onclick="return false">Create</a>
+        <input type="checkbox" id="promo_tokens" style="margin-left: 10px; vertical-align: middle"/> <label for="promo_tokens" style="display: inline; vertical-align: middle"><%= locale.get('promo_tokens') %></label>
+        
+    </div>
+
+    <br /><br /><br /><br />
+</div>

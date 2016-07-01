@@ -1,0 +1,33 @@
+<div class="list new_special">
+    <div class="list_header"><%= locale.get('new_manager') %></div>
+
+    <div class="field">
+        <label for="manager_name"><%= locale.get('manager_name') %></label>
+        <input type="text" id="manager_name" value=""  placeholder="Enter manager name" />
+    </div>
+
+    <div class="field">
+        <label for="manager_email"><%= locale.get('manager_email') %></label>
+        <input type="text" id="manager_email" value=""  placeholder="Enter manager email" />
+    </div>
+
+    <div class="field">
+        <label for="manager_country"><%= locale.get('manager_country') %></label>
+        
+        <select id="manager_country">
+            <% 
+                _.each(countries, function(item, key, list) {
+            %>
+                <option value="<%= key %>"><%= item %></option>
+            <%
+                });
+            %>
+        </select>
+    </div>
+
+    <div class="field_buttons">
+        <a href="#!/managers" class="button"><%= locale.get('cancel') %></a> 
+        <input type="button" id="manager_confirm" class="specials_confirm" value="<%= locale.get('create') %>" style="width: 80px;" />
+    </div>
+
+</div>

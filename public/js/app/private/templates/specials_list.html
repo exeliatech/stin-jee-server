@@ -23,13 +23,19 @@
                             $(this).addClass('active');
                             $('.specials_list').hide();
                             $('.specials_list_queued').show();
-                            return false" class="red active"><%= locale.get('queued') %></a>
+                            return false" class="pink active"><%= locale.get('queued') %></a>
         
         <a href="#" onclick="$('.menu_right a').removeClass('active');
                             $(this).addClass('active');
                             $('.specials_list').hide();
                             $('.specials_list_declined').show();
                             return false" class="grey"><%= locale.get('declined') %></a>
+
+        <a href="#" onclick="$('.menu_right a').removeClass('active');
+                            $(this).addClass('active');
+                            $('.specials_list').hide();
+                            $('.specials_list_expired').show();
+                            return false" class="red"><%= locale.get('expired') %></a>
         
     </div>
 
@@ -280,6 +286,66 @@
         %>
 
             <div class="no_specials"><%= locale.get('no_declined_specials') %></div>
+
+        <%
+        } 
+        %>
+    </div>
+
+    <div class="specials_list specials_list_expired">
+        <%
+        if (specials.expired.length) { 
+        _.each(specials.expired, function(item, key, list) {
+        
+        %>
+
+        <div class="specials_item <% if (!item.active) {%> deactivated <% } %>" id="<%= item.id  %>" >
+            <div class="specials_name">
+                <% if (item.image) { %>
+                    <img src="<%= item.image %>" />
+                <% } %>
+                <span class="name-wrapper"><%- _.truncate(item.name,22)  %></span>
+            </div>
+             
+            <div class="separator"></div>
+             
+            <div class="specials_store_name"> 
+                <% if (item.store_name) { %>
+                    <%= _.truncate(item.store_name, 11) %>
+                <% } else { %>
+                    <%= locale.get('unknown_store') %>
+                <% } %>
+            </div>
+            
+            <div class="separator"></div>
+            
+            <div class="specials_website">
+                <% if (item.website) { %>
+                    <a href="<%= item.website %>" target="_blank"><%= _.truncate(item.website, 24)  %></a>
+                <% } else { %>
+                    <%= locale.get('no_website') %>
+                <% } %>
+            </div>
+            
+            <div class="separator"></div>
+            
+            <div class="specials_date <% if (new Date().getTime() > moment(item.endsAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').valueOf()) { %> specials_expired<% } %>"><%= moment(item.createdAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').format('D MMMM YYYY') %></div>
+            
+            
+            <div class="specials_full_info" onclick="event.stopPropagation();">
+                
+            </div>
+        </div>
+
+        <%
+        });
+        
+        if (specials.expired.length >= 20) { %><button class="button load_more" id="specials_expired_load_more"><%= locale.get('load_more') %></button><% }
+        
+        } else {
+        %>
+
+            <div class="no_specials"><%= locale.get('no_expired_specials') %></div>
 
         <%
         } 

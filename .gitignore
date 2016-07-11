@@ -6,3 +6,4 @@ nbproject
 /vendor
 .env
 composer.lock
+sftp-config.json

@@ -172,7 +172,6 @@
         <thead>
             <tr>
                 <th></th>
-                <th></th>
                 <th>Special name</th>
                 <th>Store</th>
                 <th>Website</th>
@@ -187,8 +186,6 @@
             if (item.status != 0) return; 
             %>
             <tr class="specials_item <% if (!item.active) {%> deactivated <% } %>" id="<%= item.id  %>">
-                <td></td>
-                
                 <td class="specials_name1">
                     <% if (item.image) { %>
                         <img src="<%= item.image %>" />
@@ -221,8 +218,9 @@
 
                 <td>
                     <span><%= item.views %></span>
-                </td>
-            </tr>
+                </td>                
+            </tr>    
+            <tr class="specials_full_info" onclick="event.stopPropagation();"></tr>            
             <%
         });
         %>

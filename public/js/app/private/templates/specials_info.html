@@ -1,40 +1,42 @@
-<% if (image320) { %>
-    <img src="<%= image320 %>" class="specials_info_img" />
-<% } %>
-
-<div class="specials_info_content">
-    <span><%= locale.get('address') %>: </span> 
-    <% if (addres) { %>
-        <%= addres %>
-    <% } else { %>
-        <%= locale.get('not_specified') %>
+<td colspan="7">
+    <% if (image320) { %>
+        <img src="<%= image320 %>" class="specials_info_img" />
     <% } %>
-    <br/>
-    <span><%= locale.get('phone') %>: </span> 
-    <% if (phone) { %>
-        <%= phone %>
-    <% } else { %>
-        <%= locale.get('not_specified') %>
-    <% } %>
-    <br/>
-    <br/>
-    
-    <%= description %>
-    
-</div>
 
-<div class="info_buttons">
-    <%  
-    
-        if (status === 1) {
-            if (active) { %>
-                <a href="#" class="left red special_deactivate" onclick="return false"><%= locale.get('deactivate') %></a>
-            <% } else { %>
-                <a href="#" class="left special_activate" onclick="return false"><%= locale.get('activate') %></a>
-            <% } 
-        }
-    
-    %>
+    <div class="specials_info_content">
+        <span><%= locale.get('address') %>: </span> 
+        <% if (addres) { %>
+            <%= addres %>
+        <% } else { %>
+            <%= locale.get('not_specified') %>
+        <% } %>
+        <br/>
+        <span><%= locale.get('phone') %>: </span> 
+        <% if (phone) { %>
+            <%= phone %>
+        <% } else { %>
+            <%= locale.get('not_specified') %>
+        <% } %>
+        <br/>
+        <br/>
+        
+        <%= description %>
+        
+    </div>
 
-        <a href="#!/special/<%= id %>" class="right"><%= locale.get('review') %></a>
-</div>
+    <div class="info_buttons">
+        <%  
+        
+            if (status === 1) {
+                if (active) { %>
+                    <a href="#" class="left red special_deactivate" onclick="return false"><%= locale.get('deactivate') %></a>
+                <% } else { %>
+                    <a href="#" class="left special_activate" onclick="return false"><%= locale.get('activate') %></a>
+                <% } 
+            }
+        
+        %>
+
+            <a href="#!/special/<%= id %>" class="right"><%= locale.get('review') %></a>
+    </div>
+</td>

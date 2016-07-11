@@ -160,16 +160,7 @@ define([
                 $(this_.el).html(this_.templates[state](this_.model.toJSON()));
 
                 //enable datatables
-                $('#table_specials_list').dataTable( {
-                  "columnDefs": [ {
-                      "targets": 0,
-                      "data": null,
-                      "orderable": false,
-                      "className": 'details-control',
-                      "defaultContent": ''
-                    } ],
-                    "order": [[1, 'asc']]
-                } );
+                $('#table_specials_list').DataTable();
                 
                 // replace dropdowns
                 $('select').each(function() {
@@ -1042,9 +1033,9 @@ define([
             if (el.is(':animated')) {
                 return;
             } else if (el.is(':visible')) {
-               el.slideUp();
+               el.slideUp('fast');
             } else {
-                el.html('<img src="/i/small_loader.gif" style="margin: 40px auto; height: auto; width: auto;display: block;" />').slideDown();
+                el.html('<img src="/i/small_loader.gif" style="margin: 40px auto; height: auto; width: auto;display: block;" />').slideDown('fast');
                 this.renderSpecialInfo(specialId, el);
             }
             

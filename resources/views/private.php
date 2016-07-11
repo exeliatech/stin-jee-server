@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Stin Jee App</title>
     <link href="/css/style.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" media="all" rel="stylesheet" type="text/css"/>    
     <script src="//cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
     <script src="//cdn.jsdelivr.net/ddslick/2.0/jquery.ddslick.min.js"></script>
     <script data-main="js/app/private/main" src="/js/libs/require/require.js"></script>

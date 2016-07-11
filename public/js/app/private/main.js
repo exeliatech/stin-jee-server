@@ -13,7 +13,8 @@ require.config({
     async: '../../libs/require/async',
     moment: '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min',
     colorpicker: '../../libs/colorpicker/colorpicker',
-    niceinput: '../../libs/niceinput/niceinput'
+    niceinput: '../../libs/niceinput/niceinput',
+    datatables: '//cdn.datatables.net/1.10.12/js/jquery.dataTables.min'
   },
   
     shim: {

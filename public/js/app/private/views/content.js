@@ -28,7 +28,8 @@ define([
   'https://cdn.jsdelivr.net/ddslick/2.0/jquery.ddslick.min.js',
   'jquery_autocomplete',
   'colorpicker',
-  'niceinput'
+  'niceinput',
+  'datatables'
 ], function($, _, Backbone, Router, moment, appState, Batch, Manager, BatchList, Specials, InvoicesTemplate, InvoiceInfoTemplate, TransactionsListTemplate, ManagersListTemplate, NewManagerTemplate, ManagerEditTemplate, BatchNotFoundTemplate, SpecialsListTemplate, NewBatchTemplate, BatchInfoTemplate, SpecialsInfoTemplate, ServerErrorTemplate, BatchListTemplate, SpecialEditTemplate, BatchTemplate){
     
     var router = Router.initialize();
@@ -90,8 +91,8 @@ define([
 
         initialize: function () { 
             
-            this.model.bind('change', this.render, this);
-            
+            this.model.bind('change', this.render, this);            
+
         },
         
         select_change: function(data) {
@@ -157,6 +158,9 @@ define([
             function afterRender() {
                 
                 $(this_.el).html(this_.templates[state](this_.model.toJSON()));
+
+                //enable datatables
+                $('#table_specials_list').DataTable();  
                 
                 // replace dropdowns
                 $('select').each(function() {
@@ -370,9 +374,8 @@ define([
             
             $.get('/api/specials/list/queued', {}, function(data) {
                 appState.attributes.specials = data;
-                callback();
-            });
-            
+                callback();                
+            });                      
         },
         
         new_batch: function(callback) {
@@ -1388,8 +1391,7 @@ define([
             block.readImage($('#specials_image')[0].files[0], function(image) {
                 callback(image);
             });
-        }*/
-        
+        }*/     
     });
     
     

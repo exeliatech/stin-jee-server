@@ -260,6 +260,15 @@ input {
     color: #333333;
 }
 
+/* specials datatables +/- icons */
+td.details-control {
+    background: url('../i/datatables/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('../i/datatables/details_close.png') no-repeat center center;
+}
+
 .invoice_item, .no_invoices {
     border-top: 1px solid #d5d5d5;
     border-bottom: 0px;

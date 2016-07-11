@@ -172,6 +172,7 @@
         <thead>
             <tr>
                 <th></th>
+                <th></th>
                 <th>Special name</th>
                 <th>Store</th>
                 <th>Website</th>
@@ -186,6 +187,8 @@
             if (item.status != 0) return; 
             %>
             <tr class="specials_item <% if (!item.active) {%> deactivated <% } %>" id="<%= item.id  %>">
+                <td></td>
+                
                 <td class="specials_name1">
                     <% if (item.image) { %>
                         <img src="<%= item.image %>" />
@@ -193,12 +196,12 @@
                 </td>
 
                 <td>
-                    <span class="name-wrapper"><%- _.truncate(item.name,22)  %></span>
+                    <span class="name-wrapper"><%- _.truncate(item.name, 50) %></span>
                 </td>
                  
                 <td class="specials_store_name1"> 
                     <% if (item.store_name) { %>
-                        <%= _.truncate(item.store_name, 11) %>
+                        <%= _.truncate(item.store_name, 50) %>
                     <% } else { %>
                         <%= locale.get('unknown_store') %>
                     <% } %>

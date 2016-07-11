@@ -41,6 +41,7 @@ class FrontendApiSpecialController extends Controller{
                     'status' => $special->status,
                     'store_name' => $special->store,
                     'website' => $special->site,
+                    'views' => $special->views_count
                 );
             }
         }

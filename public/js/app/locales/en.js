@@ -53,6 +53,7 @@ define([
         used: "Used",
         deactivate: "Deactivate",
         activate: "Activate",
+        reactivate: "Re-activate",
         print: "Print",
         get_csv: "Download",
         review: "Review",

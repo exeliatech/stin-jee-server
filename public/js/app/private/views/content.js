@@ -876,7 +876,7 @@ define([
             }
 
             var website = $('#specials_website').val();
-            if(!_(website).startsWith("http") && !_(website).startsWith("//")) {
+            if(website.length > 0 && !_(website).startsWith("http") && !_(website).startsWith("//")) {
                 $('#specials_website').val("https://" + website);
             }
             
@@ -1044,7 +1044,7 @@ define([
             }
             else {
                 // Open this row
-                row.child( '<div class="specials_full_info" onclick="event.stopPropagation();"></div>' ).show();
+                row.child( '<div class="specials_full_info specials_full_info_datatables" onclick="event.stopPropagation();"></div>' ).show();
                 row.child().show();
                 //bind item data
                 var specialId = e.target.id || $(e.target).parents('.specials_item').attr('id');                

@@ -25,7 +25,7 @@ define([
   'text!templates/special_edit.html',
   'text!templates/batch.html',
   'async!http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false!callback',
-  'https://cdn.jsdelivr.net/ddslick/2.0/jquery.ddslick.min.js',
+  'ddslick',
   'jquery_autocomplete',
   'colorpicker',
   'niceinput',
@@ -159,9 +159,6 @@ define([
             function afterRender() {
                 
                 $(this_.el).html(this_.templates[state](this_.model.toJSON()));
-
-                //enable datatables
-                $('.table_specials_list').DataTable();
                 
                 // replace dropdowns
                 // for some reason this doesn't work due to the loading sequence
@@ -170,12 +167,15 @@ define([
                         onSelected: this_.select_change
                     });
                 });
+
+                //enable datatables
+                $('.table_specials_list').DataTable();
                 
                 // for some reason this doesn't work due to the loading sequence
                 $(".field input[type=file]").nicefileinput({
                     label: appState.get('locale').get('choose_file')
                 });
-                
+
                 if (state === 'special_edit') {
                     this_.googlemap();
                     this_.autocomplete();

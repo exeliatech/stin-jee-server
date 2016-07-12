@@ -163,14 +163,14 @@ define([
                 $('.table_specials_list').DataTable();
                 
                 // replace dropdowns
-                $('select').each(function() {
-                    $(this).ddslick({
-                        onSelected: this_.select_change
-                    });
-                });
+                // for some reason this doesn't work due to the loading sequence
+                // $('select').each(function() {
+                //     $(this).ddslick({
+                //         onSelected: this_.select_change
+                //     });
+                // });
                 
-                // for some reason this doesn't work
-                // it gives: TypeError: $(...).nicefileinput is not a function
+                // for some reason this doesn't work due to the loading sequence
                 // $(".field input[type=file]").nicefileinput({
                 //     label: appState.get('locale').get('choose_file')
                 // });
@@ -567,7 +567,7 @@ define([
             $('#specials_all_load_more').html('<img src="/i/small_loader.gif" style="margin: 5px 20px 6px; height: auto; width: auto; display: block;" />');
             
             var this_ = this;
-            $.get('/api/specials/list/all', {offset: appState.get('specials').all.length, limit: 20}, function(items) {
+            $.get('/api/specials/list/all', {offset: appState.get('specials').all.length, limit: 20000}, function(items) {
                 appState.attributes.specials.all = appState.attributes.specials.all.concat(items);
                 $(this_.el).html(this_.templates['specials_list'](this_.model.toJSON()));
                 $('.menu_right a:eq(0)').trigger('click');
@@ -579,7 +579,7 @@ define([
             $('#specials_active_load_more').html('<img src="/i/small_loader.gif" style="margin: 5px 20px 6px; height: auto; width: auto; display: block;" />');
             
             var this_ = this;
-            $.get('/api/specials/list/active', {offset: appState.get('specials').active.length, limit: 20}, function(items) {
+            $.get('/api/specials/list/active', {offset: appState.get('specials').active.length, limit: 20000}, function(items) {
                 appState.attributes.specials.active = appState.attributes.specials.active.concat(items);
                 $(this_.el).html(this_.templates['specials_list'](this_.model.toJSON()));
                 $('.menu_right a:eq(1)').trigger('click');
@@ -591,7 +591,7 @@ define([
             $('#specials_queued_load_more').html('<img src="/i/small_loader.gif" style="margin: 5px 20px 6px; height: auto; width: auto; display: block;" />');
             
             var this_ = this;
-            $.get('/api/specials/list/queued', {offset: appState.get('specials').queued.length, limit: 20}, function(items) {
+            $.get('/api/specials/list/queued', {offset: appState.get('specials').queued.length, limit: 20000}, function(items) {
                 appState.attributes.specials.queued = appState.attributes.specials.queued.concat(items);
                 $(this_.el).html(this_.templates['specials_list'](this_.model.toJSON()));
                 $('.menu_right a:eq(2)').trigger('click');
@@ -603,7 +603,7 @@ define([
             $('#specials_declined_load_more').html('<img src="/i/small_loader.gif" style="margin: 5px 20px 6px; height: auto; width: auto; display: block;" />');
             
             var this_ = this;
-            $.get('/api/specials/list/declined', {offset: appState.get('specials').declined.length, limit: 20}, function(items) {
+            $.get('/api/specials/list/declined', {offset: appState.get('specials').declined.length, limit: 20000}, function(items) {
                 appState.attributes.specials.declined = appState.attributes.specials.declined.concat(items);
                 $(this_.el).html(this_.templates['specials_list'](this_.model.toJSON()));
                 $('.menu_right a:eq(3)').trigger('click');

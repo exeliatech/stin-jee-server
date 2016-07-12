@@ -403,15 +403,13 @@ tr.shown td.details-control {
 }
 
 .specials_full_info {
-    display: none;
     padding: 16px;
-    border: 2px solid #ececec;
     border-radius: 6px;
     margin: 12px -6px -16px;
     behavior: url(/i/pie/PIE.htc);
 }
 
-.specials_item img.specials_info_img {
+img.specials_info_img {
     display: inline-block;
     width: 110px;
     height: 100px;

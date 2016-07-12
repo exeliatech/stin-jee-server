@@ -1026,17 +1026,25 @@ define([
         },
 
         showSpecial: function(e) {
-            
-            var el = $(e.target).hasClass('specials_item')? $(e.target).find('.specials_full_info') : $(e.target).parents('.specials_item').find('.specials_full_info');
-            var specialId = e.target.id || $(e.target).parents('.specials_item').attr('id');
-            
-            if (el.is(':animated')) {
-                return;
-            } else if (el.is(':visible')) {
-               el.slideUp('fast');
-            } else {
-                el.html('<img src="/i/small_loader.gif" style="margin: 40px auto; height: auto; width: auto;display: block;" />').slideDown('fast');
-                this.renderSpecialInfo(specialId, el);
+
+            var tr = $(e.target).closest('tr');
+            var row = $(e.target).closest('table').DataTable().row( tr );
+     
+            if ( row.child.isShown() ) {
+                // This row is already open - close it
+                row.child.hide();
+                tr.removeClass('shown');
+            }
+            else {
+                // Open this row
+                row.child( '<div class="specials_full_info" onclick="event.stopPropagation();"></div>' ).show();
+                row.child().show();
+                //bind item data
+                var specialId = e.target.id || $(e.target).parents('.specials_item').attr('id');                
+                this.renderSpecialInfo(specialId, row.child().find('.specials_full_info'));
+
+                //show item data
+                tr.addClass('shown');
             }
             
         },
@@ -1103,7 +1111,7 @@ define([
         deactivateSpecial: function(e) {
             
             var specialId = $(e.target).parents('.specials_item').attr('id'), this_ = this;
-            var el = $(e.target).hasClass('specials_item')? $(e.target).find('.specials_full_info') : $(e.target).parents('.specials_item').find('.specials_full_info');
+            var el = $(e.target).hasClass('specials_item')? $(e.target).next('tr').find('.specials_full_info') : $(e.target).parents('.specials_item').next('tr').find('.specials_full_info');
             
             $('#' + specialId + ' .specials_full_info').html('<img src="/i/small_loader.gif" style="margin: 40px auto; height: auto; width: auto;display: block;" />')
             
@@ -1122,7 +1130,7 @@ define([
         activateSpecial: function(e) {
             
             var specialId = $(e.target).parents('.specials_item').attr('id'), this_ = this;
-            var el = $(e.target).hasClass('specials_item')? $(e.target).find('.specials_full_info') : $(e.target).parents('.specials_item').find('.specials_full_info');
+            var el = $(e.target).hasClass('specials_item')? $(e.target).next('tr').find('.specials_full_info') : $(e.target).parents('.specials_item').next('tr').find('.specials_full_info');
             
             $('#' + specialId + ' .specials_full_info').html('<img src="/i/small_loader.gif" style="margin: 40px auto; height: auto; width: auto;display: block;" />')
             
@@ -1212,8 +1220,9 @@ define([
             
             var this_ = this;
             this.getSpecialInfo(specialId, function(info) {
-                el.parents('.specials_item').removeClass('deactivated');
-                if (!info.get('active')) el.parents('.specials_item').addClass('deactivated');
+                var si = el.closest('tr').prev('.specials_item');
+                si.removeClass('deactivated');
+                if (!info.get('active')) si.addClass('deactivated');
                 
                 el.html(_.template(SpecialsInfoTemplate)(info.toJSON()));
                 el.find('.special_deactivate').click(function(e) {

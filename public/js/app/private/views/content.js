@@ -169,9 +169,11 @@ define([
                     });
                 });
                 
-                $(".field input[type=file]").nicefileinput({
-                    label: appState.get('locale').get('choose_file')
-                });
+                // for some reason this doesn't work
+                // it gives: TypeError: $(...).nicefileinput is not a function
+                // $(".field input[type=file]").nicefileinput({
+                //     label: appState.get('locale').get('choose_file')
+                // });
                 
                 if (state === 'special_edit') {
                     this_.googlemap();

@@ -160,7 +160,7 @@ define([
                 $(this_.el).html(this_.templates[state](this_.model.toJSON()));
 
                 //enable datatables
-                $('#table_specials_list').DataTable();
+                $('.table_specials_list').DataTable();
                 
                 // replace dropdowns
                 $('select').each(function() {

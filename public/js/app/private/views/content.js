@@ -857,13 +857,13 @@ define([
                 return;
             }
             
-            if (!$('#specials_name').val().length || $('#specials_name').val().length > 26) {
+            if (!$('#specials_name').val().length || $('#specials_name').val().length > 50) {
                 alert(appState.get('locale').get('specify_valid_special_name'));
                 $('#specials_name').focus();
                 return;
             }
             
-            if (!$('#specials_description').val().length || $('#specials_description').val().length > 100) {
+            if (!$('#specials_description').val().length || $('#specials_description').val().length > 200) {
                 alert(appState.get('locale').get('specify_valid_special_description'));
                 $('#specials_description').focus();
                 return;
@@ -873,6 +873,11 @@ define([
                 alert(appState.get('locale').get('specify_valid_store_name'));
                 $('#specials_store').focus();
                 return;
+            }
+
+            var website = $('#specials_website').val();
+            if(!_(website).startsWith("http") && !_(website).startsWith("//")) {
+                $('#specials_website').val("https://" + website);
             }
             
             if ($('#specials_website').val().length !== 0 &&  !/^(http\:\/\/|https\:\/\/|\/\/)?([a-zA-Z0-9\.\-]+(\:[a-zA-Z0-9\.&amp;%\$\-]+)*@)*((25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])|([a-zA-Z0-9\-]+\.)*[a-zA-Z0-9\-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(\:[0-9]+)*(\/($|[a-zA-Z0-9\.\,\?\'\\\+&amp;%\$#\=~_\-]+))*$/.test($('#specials_website').val())) {

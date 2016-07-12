@@ -136,7 +136,7 @@ class FrontendApiSpecialController extends Controller{
 
     public function getSpecials(Request $request, $param = NULL){
         $specials_array = array();
-        $limit = ($request->input('limit')) ? $request->input('limit') : 20;
+        $limit = ($request->input('limit')) ? $request->input('limit') : 20000;
         $offset = ($request->input('offset')) ? $request->input('offset') : 0;
 
         $specialsAll = Specials::query()->orderBy('created_at', 'desc')->skip($offset)->take($limit)->get();

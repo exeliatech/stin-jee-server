@@ -42,7 +42,7 @@
     <div class="specials_list specials_list_all">
         
         <%
-        if (specials.active.length) { 
+        if (specials.all.length) { 
         %>
         <table class="table_specials_list" class="display" cellspacing="0" width="100%">
         <thead>
@@ -58,9 +58,9 @@
         </thead>
         <tbody>
         <%
-        _.each(specials.active, function(item, key, list) {
+        _.each(specials.all, function(item, key, list) {
             %>
-            <tr class="specials_item <% if (!item.active) {%> deactivated <% } %>" id="<%= item.id  %>">
+            <tr class="specials_item <% if (!item.all) {%> deactivated <% } %>" id="<%= item.id  %>">
                 <td class="specials_name1">
                     <% if (item.image) { %>
                         <img src="<%= item.image %>" />
@@ -102,12 +102,12 @@
         </tbody>
         </table>
         
-        <% if (specials.active.length >= 20) { %><button class="button load_more" id="specials_active_load_more"><%= locale.get('load_more') %></button><% }
+        <% if (specials.all.length >= 20) { %><button class="button load_more" id="specials_all_load_more"><%= locale.get('load_more') %></button><% }
         
         } else {
         %>
 
-        <div class="no_specials"><%= locale.get('no_active_specials') %></div>
+        <div class="no_specials"><%= locale.get('no_all_specials') %></div>
 
         <%
         } 

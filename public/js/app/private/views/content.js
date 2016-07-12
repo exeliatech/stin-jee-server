@@ -54,6 +54,7 @@ define([
             "click #batch_confirm": "createBatch",
             "click #create_report": "createInvoiceReport",
             "click .aprove_button": "aproveSpecials",
+            "click .reactivate_button": "reactivateSpecials",
             "click .decline_button": "declineSpecials",
             "click .specials_item": "showSpecial",
             "click .batch_item": "showBatch",
@@ -164,16 +165,16 @@ define([
                 
                 // replace dropdowns
                 // for some reason this doesn't work due to the loading sequence
-                // $('select').each(function() {
-                //     $(this).ddslick({
-                //         onSelected: this_.select_change
-                //     });
-                // });
+                $('select').each(function() {
+                    $(this).ddslick({
+                        onSelected: this_.select_change
+                    });
+                });
                 
                 // for some reason this doesn't work due to the loading sequence
-                // $(".field input[type=file]").nicefileinput({
-                //     label: appState.get('locale').get('choose_file')
-                // });
+                $(".field input[type=file]").nicefileinput({
+                    label: appState.get('locale').get('choose_file')
+                });
                 
                 if (state === 'special_edit') {
                     this_.googlemap();
@@ -954,7 +955,7 @@ define([
                     website: $('#specials_website').val(),
                     /*facebook: $('#specials_facebook').val(),*/
                     phone: $('#specials_phone').val(),
-                    valid_for: $('#specials_days input').val(),
+                    valid_for: $('#specials_days input').val() || $('#specials_days').val(),
                     let_admin_choose_image: $('#specials_admin_image').is(':checked'),
                     longitude: longitude,
                     latitude: latitude,
@@ -1008,6 +1009,10 @@ define([
 
         },
 
+        reactivateSpecials: function(e) {
+            this.aproveSpecials(e);
+        },
+
         declineSpecials: function(e) {
 
             this.preloader();
@@ -1045,7 +1050,7 @@ define([
             else {
                 // Open this row
                 row.child( '<div class="specials_full_info specials_full_info_datatables" onclick="event.stopPropagation();"></div>' ).show();
-                row.child().show();
+
                 //bind item data
                 var specialId = e.target.id || $(e.target).parents('.specials_item').attr('id');                
                 this.renderSpecialInfo(specialId, row.child().find('.specials_full_info'));

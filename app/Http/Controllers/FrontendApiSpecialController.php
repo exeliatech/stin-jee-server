@@ -77,10 +77,6 @@ class FrontendApiSpecialController extends Controller{
             return response()->json(array('error' => $validator->errors()->first(), 'status' => 'error'));
         }
 
-        $valid_for = $request->input('valid_for');
-        if($valid_for < 1) $valid_for = 1;
-        if ($valid_for > 7 && !in_array($valid_for, array(14, 21, 30, 60, 90, 120))) $valid_for = 7;
-
         $special = Specials::findOrNew($request->input('id'));
         if(!$special->object_id){
             return response()->json(array('error' => 'special not found', 'status' => 'error'));
@@ -95,12 +91,23 @@ class FrontendApiSpecialController extends Controller{
         $special->active = 1;
         $special->phone = $request->input('phone');
         $special->status = 1;
-        $special->valid_for = $valid_for;
+
+        // if the screen only approves, then ignore the effect of the valid for
+        // this is detected as a value of 0
+        // otherwise the screen asked for re-activation  
+        $valid_for = $request->input('valid_for');
+        if($valid_for != 0) {
+            if($valid_for < 1) $valid_for = 1;
+            if ($valid_for > 7 && !in_array($valid_for, array(14, 21, 30, 60, 90, 120))) $valid_for = 7;
+
+            $special->valid_for = $valid_for;
+            $special->ends_at = date("Y-m-d H:i:s", time() + $valid_for * 24 * 60 * 60);
+        }
+
         $special->country = $request->input('country');
         $special->country_code = $request->input('country_code');
         $special->location_latitude = floatval($_POST['latitude']);
-        $special->location_longitude = floatval($_POST['longitude']);
-        $special->ends_at = date("Y-m-d H:i:s", time() + $valid_for * 24 * 60 * 60);
+        $special->location_longitude = floatval($_POST['longitude']);        
         $special->activated_at = date("Y-m-d H:i:s");
 
         // save images

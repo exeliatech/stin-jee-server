@@ -134,40 +134,43 @@
         <input type="text" id="store_logo_bg" value="<% if (special.store_logo_bg) { %><%= special.store_logo_bg %><% } else { %>#ffffff<% } %>"  readonly />
     </div>
     
-    
-    <div class="field">
-        <a href="#" class="q" onclick=" var el = $(this).parent().find('.tooltip'); if (el.is(':visible')) $('.tooltip').hide(); else { $('.tooltip').hide(); el.show(); } return false; "></a>
-        <div class="tooltip">
-            <%= locale.get('admin_field_tooltip') %>
-            <div></div>
-        </div>
-        <label><%= locale.get('let_admin_choose_photo') %></label>
-        <input type="checkbox" id="specials_admin_image" value="" onclick="return false" style="opacity: 0.5" disabled <% if (special.letAdminChooseImage) { %> checked <% } %>/>
-    </div>    
+    <% if (new Date().getTime() > moment(special.endsAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').valueOf()) { %> 
+        <div class="field">
+            <a href="#" class="q" onclick=" var el = $(this).parent().find('.tooltip'); if (el.is(':visible')) $('.tooltip').hide(); else { $('.tooltip').hide(); el.show(); } return false; "></a>
+            <div class="tooltip">
+                <%= locale.get('admin_field_tooltip') %>
+                <div></div>
+            </div>
+            <label><%= locale.get('let_admin_choose_photo') %></label>
+            <input type="checkbox" id="specials_admin_image" value="" onclick="return false" style="opacity: 0.5" disabled <% if (special.letAdminChooseImage) { %> checked <% } %>/>
+        </div>    
 
-    <div class="field">
-        <a href="#" class="q" onclick=" var el = $(this).parent().find('.tooltip'); if (el.is(':visible')) $('.tooltip').hide(); else { $('.tooltip').hide(); el.show(); } return false; "></a>
-        <div class="tooltip">
-            <%= locale.get('valid_for_field_tooltip') %>
-            <div></div>
+        <div class="field">
+            <a href="#" class="q" onclick=" var el = $(this).parent().find('.tooltip'); if (el.is(':visible')) $('.tooltip').hide(); else { $('.tooltip').hide(); el.show(); } return false; "></a>
+            <div class="tooltip">
+                <%= locale.get('valid_for_field_tooltip') %>
+                <div></div>
+            </div>
+            <label for="specials_image"><%= locale.get('valid_for_days') %></label>
+            <select id="specials_days">
+                <option <% if (special.validFor === 120) { %> selected <% } %>>120</option>
+                <option <% if (special.validFor === 90) { %> selected <% } %>>90</option>
+                <option <% if (special.validFor === 60) { %> selected <% } %>>60</option>
+                <option <% if (special.validFor === 30) { %> selected <% } %>>30</option>
+                <option <% if (special.validFor === 21) { %> selected <% } %>>21</option>
+                <option <% if (special.validFor === 14) { %> selected <% } %>>14</option>
+                <option <% if (special.validFor === 7) { %> selected <% } %>>7</option>
+                <option <% if (special.validFor === 6) { %> selected <% } %>>6</option>
+                <option <% if (special.validFor === 5) { %> selected <% } %>>5</option>
+                <option <% if (special.validFor === 4) { %> selected <% } %>>4</option>
+                <option <% if (special.validFor === 3) { %> selected <% } %>>3</option>
+                <option <% if (special.validFor === 2) { %> selected <% } %>>2</option>
+                <option <% if (special.validFor === 1) { %> selected <% } %>>1</option>
+            </select>
         </div>
-        <label for="specials_image"><%= locale.get('valid_for_days') %></label>
-        <select id="specials_days">
-            <option <% if (special.validFor === 120) { %> selected <% } %>>120</option>
-            <option <% if (special.validFor === 90) { %> selected <% } %>>90</option>
-            <option <% if (special.validFor === 60) { %> selected <% } %>>60</option>
-            <option <% if (special.validFor === 30) { %> selected <% } %>>30</option>
-            <option <% if (special.validFor === 21) { %> selected <% } %>>21</option>
-            <option <% if (special.validFor === 14) { %> selected <% } %>>14</option>
-            <option <% if (special.validFor === 7) { %> selected <% } %>>7</option>
-            <option <% if (special.validFor === 6) { %> selected <% } %>>6</option>
-            <option <% if (special.validFor === 5) { %> selected <% } %>>5</option>
-            <option <% if (special.validFor === 4) { %> selected <% } %>>4</option>
-            <option <% if (special.validFor === 3) { %> selected <% } %>>3</option>
-            <option <% if (special.validFor === 2) { %> selected <% } %>>2</option>
-            <option <% if (special.validFor === 1) { %> selected <% } %>>1</option>
-        </select>
-    </div>
+    <% } else { %>
+        <input type="hidden" id="specials_days" value="0" />
+    <% } %>
     
     <div class="field">
         <a href="#" class="q" onclick=" var el = $(this).parent().find('.tooltip'); if (el.is(':visible')) $('.tooltip').hide(); else { $('.tooltip').hide(); el.show(); } return false; "></a>
@@ -175,13 +178,13 @@
             <%= locale.get('views_field_tooltip') %>
             <div></div>
         </div>
-        <label for="specials_name"><%= locale.get('special_views') %></label>
-        <span id="specials_name"><%= special.views_count %></span>
+        <label for="specials_views"><%= locale.get('special_views') %></label>
+        <input id="specials_views" type="text" value="<%= special.views_count %>" readonly />
     </div>
 
     <div class="field_buttons">
         <a href="#" class="button decline_button" onclick="return false" id="<%= special.id %>"><%= locale.get('decline') %></a> 
-        <input type="button" id="specials_confirm" class="aprove_button" value="<%= locale.get('approve') %>" style="width: 80px;" />
-        <input <% if (new Date().getTime() > moment(special.endsAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').valueOf()) {%> disabled <% } %> type="button" id="specials_reactivate" class="reactivate_button <% if (new Date().getTime() > moment(special.endsAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').valueOf()) {%> disabled <% } %>" value="<%= locale.get('reactivate') %>" style="width: 80px;" />
+        <input type="button" id="specials_confirm" class="aprove_button <% if (new Date().getTime() > moment(special.endsAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').valueOf()) {%> disabled <% } %>" value="<%= locale.get('approve') %>" style="width: 80px; <% if (new Date().getTime() > moment(special.endsAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').valueOf()) {%> disabled <% } %>" />
+        <input type="button" id="specials_reactivate" class="reactivate_button <% if (new Date().getTime() < moment(special.endsAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').valueOf()) {%> disabled <% } %>" value="<%= locale.get('reactivate') %>" style="width: 80px; <% if (new Date().getTime() < moment(special.endsAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').valueOf()) {%> disabled <% } %>" />
     </div>
 </div>

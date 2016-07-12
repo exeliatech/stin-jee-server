@@ -74,6 +74,7 @@ maximum_value_number: "Maksimalna vrijednost za broj bonova %s",
 minimum_value_number: "Minimalna vrijednost za broj bonova %s",
 enter_valid_number_of_tokens: "Molim unesite važeći broj bonova",
 special_creation_failed: "Stvaranje akcijske ponude je neuspjelo",
+special_views: "Posjeta",
 
 
 // !!!: FORM VALIDATION
@@ -91,8 +92,8 @@ specify_valid_batch_id: "Molim unesite ispravni broj serije",
 
 
 // !!!: TOOLTIPS FOR "?"
-name_field_tooltip: "Naslov akcijske ponude. Maks. 26 znakova",
-description_field_tooltip: "Opis akcijske ponude. Maks. 100 znakova",
+name_field_tooltip: "Naslov akcijske ponude. Maks. 50 znakova",
+description_field_tooltip: "Opis akcijske ponude. Maks. 200 znakova",
 store_field_tooltip: "Naziv lokala. Maks 40 znakova",
 address_field_tooltip: "Adresa lokala, počeši sa brojem ulice. Mora biti vidljiva na mapi.",
 website_field_tooltip: "Web stranica lokala dostupna korisnicima.",
@@ -103,6 +104,7 @@ admin_field_tooltip: "Označite ovo polje ako želite da mi izaberemo fotografij
 valid_for_field_tooltip: "Koliko dana bi trebala vrijediti ova akcijska ponuda?",
 batch_field_tooltip: "Unesite odgovarajući broj serije od bona koji koristite za ovu akcijsku ponudu.",
 token_field_tooltip: "Unesite odgovarajući broj bon koji pripada broju serije koji ste unijeli prethodno.",
+views_field_tooltip: "Broj prikaza na mobilnim aplikacijama.",
 
 
 // !!!: ANALYTICS

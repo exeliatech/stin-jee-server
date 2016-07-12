@@ -65,7 +65,7 @@ class FrontendApiSpecialController extends Controller{
 
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'description' => 'required|max:110',
+            'description' => 'required|max:200',
             'store' => 'required',
             'address' => 'required',
             //'website' => 'required|url', //website
@@ -214,7 +214,7 @@ class FrontendApiSpecialController extends Controller{
 
             $validator = Validator::make($special, [
                 'name' => 'required|string|max:26',
-                'description' => 'required|string|max:110',
+                'description' => 'required|string|max:200',
                 'address' => 'required|string',
                 'phone' => 'required|string',
                 'logo_bg' => 'required|string',
@@ -318,7 +318,7 @@ class FrontendApiSpecialController extends Controller{
         $validator = Validator::make($request->all(), [
 
             'name' => 'required',
-            'description' => 'required|max:110',
+            'description' => 'required|max:200',
             'store' => 'required',
             'address' => 'required',
             'website' => 'url',

@@ -169,6 +169,15 @@
         </select>
     </div>
     
+    <div class="field">
+        <a href="#" class="q" onclick=" var el = $(this).parent().find('.tooltip'); if (el.is(':visible')) $('.tooltip').hide(); else { $('.tooltip').hide(); el.show(); } return false; "></a>
+        <div class="tooltip">
+            <%= locale.get('views_field_tooltip') %>
+            <div></div>
+        </div>
+        <label for="specials_name"><%= locale.get('special_views') %></label>
+        <span id="specials_name"><%= special.views_count %></span>
+    </div>
 
     <div class="field_buttons">
         <a href="#" class="button decline_button" onclick="return false" id="<%= special.id %>"><%= locale.get('decline') %></a> 

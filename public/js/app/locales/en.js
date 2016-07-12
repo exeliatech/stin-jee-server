@@ -67,6 +67,7 @@ define([
         minimum_value_number: "The minimum value of the number of tokens %s",
         enter_valid_number_of_tokens: "Please enter a valid number of tokens",
         special_creation_failed: "Special creation failed.",
+        special_views: "Views",
 
 
         // !!!: FORM VALIDATION
@@ -84,8 +85,8 @@ define([
 
 
         // !!!: TOOLTIPS FOR "?"
-        name_field_tooltip: "The heading of your special. Max 26 characters.",
-        description_field_tooltip: "The description of your special. Max 100 characters.",
+        name_field_tooltip: "The heading of your special. Max 50 characters.",
+        description_field_tooltip: "The description of your special. Max 200 characters.",
         store_field_tooltip: "The name of your store. Max 40 characters.",
         address_field_tooltip: "Address of your store, starting with street number. Make sure you see it on the map.",
         website_field_tooltip: "The website for your store that users will be able to see.",
@@ -96,6 +97,7 @@ define([
         valid_for_field_tooltip: "For how many days should this special be valid?",
         batch_field_tooltip: "Enter a valid Batch ID that corresponds with the Token ID you will use for this special.",
         token_field_tooltip: "Enter a valid Token ID that corresponds with the Batch ID you entered before.",
+        views_field_tooltip: "The number of views on the mobile apps.",
 
 
         // !!!: ANALYTICS

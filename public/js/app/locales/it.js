@@ -73,6 +73,7 @@ maximum_value_number: "Il numero massimo di gettoni % s",
 minimum_value_number: "Il numero minimo di gettoni % s",
 enter_valid_number_of_tokens: "Si prega di inserire un numero valido di gettoni",
 special_creation_failed: "Creazione offeta speciale non riuscita.",
+special_views: "Visualizzazioni",
 
 
 // !!!: FORM VALIDATION
@@ -90,8 +91,8 @@ specify_valid_batch_id: "Si prega di inserire un codice pacchetto valido.",
 
 
 // !!!: TOOLTIPS FOR "?"
-name_field_tooltip: "Il nole dall tua offerta speciale. Max 26 caratteri.",
-description_field_tooltip: "La descrizione della tua offerta speciale. Max 100 caratteri.",
+name_field_tooltip: "Il nole dall tua offerta speciale. Max 50 caratteri.",
+description_field_tooltip: "La descrizione della tua offerta speciale. Max 200 caratteri.",
 store_field_tooltip: "Il nome del tuo punto vendita. Max 40 caratteri.",
 address_field_tooltip: "Indirizzo del punto vendita. Assicurati di controllare sulla mappa.",
 website_field_tooltip: "Il sito web del tuo punto vendita, che gli utenti saranno in grado di visitare.",
@@ -102,6 +103,7 @@ admin_field_tooltip: "Seleziona questa casella se preferisci che noi selezioniam
 valid_for_field_tooltip: "Per quanti giorni è valida questa offerta speciale?",
 batch_field_tooltip: "Inserisci un Codice Pacchetto valido e che corrisponda con il Codice Gettone da utilizzare per questa offerta speciale.",
 token_field_tooltip: "Inserisci un Codice Gettone che corrisponda con il Codice Pacchetto inserito prima.",
+views_field_tooltip: "Il numero di punti di vista sulle applicazioni mobili.",
 
 
 // !!!: ANALYTICS

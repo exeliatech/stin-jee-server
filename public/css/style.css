@@ -416,6 +416,11 @@ tr.shown td.details-control {
     margin: 0;
 }
 
+.disabled {
+    opacity: 0.5;
+    cursor: auto;
+}
+
 img.specials_info_img {
     display: inline-block;
     width: 110px;

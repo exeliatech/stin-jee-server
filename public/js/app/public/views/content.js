@@ -11,7 +11,7 @@ define([
   'jquery_autocomplete',
   'jquery_csv',
   'async!http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false!callback',
-  'https://cdn.jsdelivr.net/ddslick/2.0/jquery.ddslick.min.js',
+  'ddslick',
   'colorpicker',
   'niceinput',
   'exif'

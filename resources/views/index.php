@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Stin Jee App</title>
     <link href="/css/style.css" media="all" rel="stylesheet" type="text/css"/>
-    <script data-main="js/app/public/main" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js"></script>
+    <script data-main="js/app/public/main" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js"></script>
 
     <script type="text/template" id="StartTemplate">
         <div class="start">

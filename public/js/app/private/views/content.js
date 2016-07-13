@@ -169,43 +169,47 @@ define([
                 });
 
                 /* Custom filtering function which will search data in column 4 (start date) between two values */
-                //enable datatables
-                var tables = $('.table_specials_list').DataTable( {
-                    "dom": 'l<"toolbar">frtip'
+                $(document).on('blur', '.date-range', function() {
+                    $(this).closest('.toolbar').nextAll('.table_specials_list').DataTable().draw();
                 });
 
-                $(document).on('blur', '.date-range', function() {
-                    tables.draw();
+                //enable datatables
+                var tables = $('.table_specials_list').DataTable( {
+                    "dom": 'l<"toolbar">frtip',
+                    "language": {
+                        "url": appState.get('locale').get('datatables_url')
+                    }
                 });
+
+                alert(<%= locale)
                  
                 $.fn.dataTable.ext.search.push(
                     function( settings, data, index, rowData, counter ) {
 
-                        var filterstart = $(settings.nTableWrapper).find('#dateMin').val();
-                        var filterend = $(settings.nTableWrapper).find('#dateMax').val();
-                        var iStartDateCol = 4;
-                        var iEndDateCol = 4;
+                        var min = $(settings.nTableWrapper).find('#dateMin').val();
+                        var max = $(settings.nTableWrapper).find('#dateMax').val();
                      
-                        var tabledatestart = data[iStartDateCol];
-                        var tabledateend= data[iEndDateCol];
-                     
-                        if ( filterstart === "" && filterend === "" )
+                        if (!min && !max)
+                        {
+                            return true;
+                        }                        
+                        
+                        var dateMax = moment(max);                     
+                        var date = moment(data[4]);
+
+                        if (min === "" && dateMax.isAfter(date))
                         {
                             return true;
                         }
-                        else if ((moment(filterstart).isSame(tabledatestart) || moment(filterstart).isBefore(tabledatestart)) && filterend === "")
+
+                        var dateMin = moment(min);
+
+                        if (max === "" && dateMin.isBefore(date))
                         {
                             return true;
                         }
-                        else if ((moment(filterend).isSame(tabledateend) || moment(filterend).isAfter(tabledateend)) && filterstart === "")
-                        {
-                            return true;
-                        }
-                        else if ((moment(filterstart).isSame(tabledatestart) || moment(filterstart).isBefore(tabledatestart)) && (moment(filterend).isSame(tabledateend) || moment(filterend).isAfter(tabledateend)))
-                        {
-                            return true;
-                        }
-                        return false;
+
+                        return date.isBetween(dateMin, dateMax);
                     }
                 );
 

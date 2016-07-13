@@ -184,7 +184,7 @@
 
     <div class="field_buttons">
         <a href="#" class="button decline_button" onclick="return false" id="<%= special.id %>"><%= locale.get('decline') %></a>         
-        <% if (new Date().getTime() < moment(special.endsAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').valueOf()) {%> 
+        <% if (new Date().getTime() > moment(special.endsAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').valueOf()) {%> 
             <input type="button" id="specials_confirm_disabled" class="specials_confirm aprove_button disabled" value="<%= locale.get('approve') %>" style="width: 80px;" disabled />        
             <input type="button" id="specials_reactivate" class="specials_reactivate reactivate_button" value="<%= locale.get('reactivate') %>" style="width: 80px;" />
         <% } else { %>

@@ -169,16 +169,17 @@ define([
                 });
 
                 /* Custom filtering function which will search data in column 4 (start date) between two values */
-                $(document).on('blur', '.date-range', function() {
-                    $(this).closest('.toolbar').nextAll('.table_specials_list').DataTable().draw();
-                });
-
                 //enable datatables
                 $('.table_specials_list').DataTable( {                    
                     "language": { url: appState.get('locale').get('datatables_url') },
                     "dom": 'l<"toolbar">frtip',
                     "initComplete": function(settings, json) {
-                      $(settings.nTableWrapper).find('.dataTables_length').after('<div class="toolbar"><label>' + appState.get('locale').get('dt_special_start_date_from') + ': <input type="search" id="dateMin" class="date-range" aria-controls="DataTables_Table_2"></label> <label>' + appState.get('locale').get('dt_special_to') + ' <input type="search" id="dateMax" class="date-range" aria-controls="DataTables_Table_2"></label></div>');
+                        $(settings.nTableWrapper).find('.dataTables_length').after('<div class="toolbar"><label>' + appState.get('locale').get('dt_special_start_date_from') + ': <input type="search" id="dateMin" class="date-range" aria-controls="DataTables_Table_2"></label> <label>' + appState.get('locale').get('dt_special_to') + ' <input type="search" id="dateMax" class="date-range" aria-controls="DataTables_Table_2"></label></div>');
+                        $(settings.nTableWrapper).find( ".date-range" ).each(function( index ) {
+                            new Pikaday({ field: $( this )[0] });
+                        }).on('blur', function() {
+                            $(this).closest('.toolbar').nextAll('.table_specials_list').DataTable().draw();
+                        });
                     }
                 });
                  
@@ -208,13 +209,9 @@ define([
                             return true;
                         }
 
-                        return date.isBetween(dateMin, dateMax);
+                        return date.isBetween(dateMin, dateMax) || date.isSame(dateMin) || date.isSame(dateMax);
                     }
-                );                
-
-                $( ".date-range" ).each(function( index ) {
-                    new Pikaday({ field: $( this )[0] });
-                });
+                );   
                 /* end custom datatables */
                 
                 // for some reason this doesn't work due to the loading sequence

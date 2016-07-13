@@ -15,7 +15,7 @@ require.config({
         colorpicker: '../../libs/colorpicker/colorpicker',
         niceinput: '../../libs/niceinput/niceinput',
         datatables: '//cdn.datatables.net/1.10.12/js/jquery.dataTables.min',
-        ddslick: 'https://cdn.jsdelivr.net/ddslick/2.0/jquery.ddslick.min'
+        ddslick: 'https://cdn.jsdelivr.net/ddslick/2.0/jquery.ddslick.min',
     },
   
     shim: {

@@ -183,8 +183,13 @@
     </div>
 
     <div class="field_buttons">
-        <a href="#" class="button decline_button" onclick="return false" id="<%= special.id %>"><%= locale.get('decline') %></a> 
-        <input type="button" id="specials_confirm" class="aprove_button <% if (new Date().getTime() > moment(special.endsAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').valueOf()) {%> disabled <% } %>" value="<%= locale.get('approve') %>" style="width: 80px; <% if (new Date().getTime() > moment(special.endsAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').valueOf()) {%> disabled <% } %>" />
-        <input type="button" id="specials_reactivate" class="reactivate_button <% if (new Date().getTime() < moment(special.endsAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').valueOf()) {%> disabled <% } %>" value="<%= locale.get('reactivate') %>" style="width: 80px; <% if (new Date().getTime() < moment(special.endsAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').valueOf()) {%> disabled <% } %>" />
+        <a href="#" class="button decline_button" onclick="return false" id="<%= special.id %>"><%= locale.get('decline') %></a>         
+        <% if (new Date().getTime() < moment(special.endsAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').valueOf()) {%> 
+            <input type="button" id="specials_confirm_disabled" class="specials_confirm aprove_button disabled" value="<%= locale.get('approve') %>" style="width: 80px;" disabled />        
+            <input type="button" id="specials_reactivate" class="specials_reactivate reactivate_button" value="<%= locale.get('reactivate') %>" style="width: 80px;" />
+        <% } else { %>
+            <input type="button" id="specials_confirm" class="specials_confirm aprove_button" value="<%= locale.get('approve') %>" style="width: 80px;" />        
+            <input type="button" id="specials_reactivate_disabled" class="specials_reactivate reactivate_button disabled" value="<%= locale.get('reactivate') %>" style="width: 80px;" disabled />
+        <% } %>
     </div>
 </div>

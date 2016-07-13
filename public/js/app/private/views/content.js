@@ -30,7 +30,7 @@ define([
   'colorpicker',
   'niceinput',
   'datatables',
-  'jquery_date_range_picker'
+  'daterangepicker'
 ], function($, _, Backbone, Router, moment, appState, Batch, Manager, BatchList, Specials, InvoicesTemplate, InvoiceInfoTemplate, TransactionsListTemplate, ManagersListTemplate, NewManagerTemplate, ManagerEditTemplate, BatchNotFoundTemplate, SpecialsListTemplate, NewBatchTemplate, BatchInfoTemplate, SpecialsInfoTemplate, ServerErrorTemplate, BatchListTemplate, SpecialEditTemplate, BatchTemplate){
     
     var router = Router.initialize();
@@ -170,19 +170,56 @@ define([
                 });
 
                 /* Custom filtering function which will search data in column 4 (start date) between two values */
-
                 //enable datatables
                 var tables = $('.table_specials_list').DataTable( {
                     "dom": 'l<"toolbar">frtip'
-                } );
+                });
 
-                $("div.toolbar").html('<label>Search start date: <input type="search" id="date_range" aria-controls="DataTables_Table_2"></label>');
+                $("div.toolbar").html('<label>Search start date: <input type="search" class="date_range" aria-controls="DataTables_Table_2"></label>');
 
                 // Date range script - Start of the sscript
-                $("#date_range").dateRangePicker().bind('datepicker-change', function(event, obj)
-                {
-                    console.log(obj);
-                })
+                $(".date_range").daterangepicker({
+                    autoUpdateInput: false,
+                    locale: {
+                        "cancelLabel": "Clear",
+                    }
+                });
+
+                $(".date_range").on('apply.daterangepicker', function(ev, picker) {
+                    $(this).val(picker.startDate.format('YYYY-MM-DD') + ' to ' + picker.endDate.format('YYYY-MM-DD'));
+                    tables.draw();
+                });
+
+                $(".date_range").on('cancel.daterangepicker', function(ev, picker) {
+                    $(this).val('');
+                    tables.draw();
+                });
+                // Date range script - END of the script
+
+                $.fn.dataTableExt.afnFiltering.push(
+                    function(oSettings, aData, iDataIndex) {
+
+                        var grab_daterange = $("#date_range").val();
+                        var give_results_daterange = grab_daterange.split(" to ");
+                        var filterstart = give_results_daterange[0];
+                        var filterend = give_results_daterange[1];
+                        var iStartDateCol = 4; //using column 2 in this instance
+                        var iEndDateCol = 4;
+                        var tabledatestart = aData[iStartDateCol];
+                        var tabledateend = aData[iEndDateCol];
+
+                        if (!filterstart && !filterend) {
+                            return true;
+                        } else if ((moment(filterstart).isSame(tabledatestart) || moment(filterstart).isBefore(tabledatestart)) && filterend === "") {
+                            return true;
+                        } else if ((moment(filterstart).isSame(tabledatestart) || moment(filterstart).isAfter(tabledatestart)) && filterstart === "") {
+                            return true;
+                        } else if ((moment(filterstart).isSame(tabledatestart) || moment(filterstart).isBefore(tabledatestart)) && (moment(filterend).isSame(tabledateend) || moment(filterend).isAfter(tabledateend))) {
+                            return true;
+                        }
+                        return false;
+                    }
+                );
                 
                 // for some reason this doesn't work due to the loading sequence
                 $(".field input[type=file]").nicefileinput({

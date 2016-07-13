@@ -4,10 +4,7 @@
     <meta charset="utf-8">
     <title>Stin Jee App</title>
     <link href="/css/style.css" media="all" rel="stylesheet" type="text/css"/>
-    <link href="/css/bootstrap-iso.css" media="all" rel="stylesheet" type="text/css"/>    
-    <link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" media="all" rel="stylesheet" type="text/css"/>    
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
-    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.4.0/css/pikaday.min.css" media="all" rel="stylesheet" type="text/css"/>
     <script data-main="js/app/private/main" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js"></script>
 </head>
 

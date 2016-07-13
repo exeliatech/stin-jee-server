@@ -60,7 +60,7 @@
         <%
         _.each(specials.all, function(item, key, list) {
             %>
-            <tr class="specials_item <% if (!item.all) {%> deactivated <% } %>" id="<%= item.id  %>">
+            <tr class="specials_item <% if (!item.active) {%> deactivated <% } %>" id="<%= item.id  %>">
                 <td class="specials_name1">
                     <% if (item.image) { %>
                         <img src="<%= item.image %>" />

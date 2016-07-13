@@ -29,7 +29,8 @@ define([
   'jquery_autocomplete',
   'colorpicker',
   'niceinput',
-  'datatables'
+  'datatables',
+  'jquery_date_range_picker'
 ], function($, _, Backbone, Router, moment, appState, Batch, Manager, BatchList, Specials, InvoicesTemplate, InvoiceInfoTemplate, TransactionsListTemplate, ManagersListTemplate, NewManagerTemplate, ManagerEditTemplate, BatchNotFoundTemplate, SpecialsListTemplate, NewBatchTemplate, BatchInfoTemplate, SpecialsInfoTemplate, ServerErrorTemplate, BatchListTemplate, SpecialEditTemplate, BatchTemplate){
     
     var router = Router.initialize();
@@ -168,8 +169,20 @@ define([
                     });
                 });
 
+                /* Custom filtering function which will search data in column 4 (start date) between two values */
+
                 //enable datatables
-                $('.table_specials_list').DataTable();
+                var tables = $('.table_specials_list').DataTable( {
+                    "dom": 'l<"toolbar">frtip'
+                } );
+
+                $("div.toolbar").html('<label>Search start date: <input type="search" id="date_range" aria-controls="DataTables_Table_2"></label>');
+
+                // Date range script - Start of the sscript
+                $("#date_range").dateRangePicker().bind('datepicker-change', function(event, obj)
+                {
+                    console.log(obj);
+                })
                 
                 // for some reason this doesn't work due to the loading sequence
                 $(".field input[type=file]").nicefileinput({

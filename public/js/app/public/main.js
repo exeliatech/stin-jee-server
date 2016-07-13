@@ -11,7 +11,7 @@ require.config({
         backbone: 'https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone-min',
         text: 'https://cdnjs.cloudflare.com/ajax/libs/require-text/2.0.12/text.min',
         async: '../../libs/require/async',
-        moment: 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min',
+        moment: 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min',
         papaparse: '../../libs/papaparse/papaparse.min',
         exif: '../../libs/exif/exif',
         colorpicker: '../../libs/colorpicker/colorpicker',

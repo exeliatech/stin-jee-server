@@ -300,6 +300,12 @@ define([], function() {
         specify_manager: 'Specify manager',
         how_sold: 'How sold',
 
-        datatables_url: '//cdn.datatables.net/plug-ins/1.10.12/i18n/Italian.json'
+        datatables_url: '//cdn.datatables.net/plug-ins/1.10.12/i18n/Italian.json',
+
+        dt_special_start_date: 'Data d\'inizio',
+        dt_special_end_date: 'Data di fine',
+        dt_special_store: ' Negozio',
+        dt_special_start_date_from: 'Data d\'inizio da',
+        dt_special_to: 'a',
     };
 });

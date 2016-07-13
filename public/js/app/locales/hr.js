@@ -300,6 +300,12 @@ define([], function() {
         specify_manager: 'Specify manager',
         how_sold: 'How sold',
 
-        datatables_url: '//cdn.datatables.net/plug-ins/1.10.12/i18n/Croatian.json'
+        datatables_url: '//cdn.datatables.net/plug-ins/1.10.12/i18n/Croatian.json',
+
+        dt_special_start_date: 'Početni datum',
+        dt_special_end_date: 'Datum završetka',
+        dt_special_store: 'Dućan',
+        dt_special_start_date_from: 'Datum početka od',
+        dt_special_to: 'do',
     };
 });

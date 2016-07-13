@@ -311,6 +311,12 @@ define([
         please_specify_each_batch_price: 'Please specify each batch price',
         how_sold: 'How sold',
 
-        datatables_url: '//cdn.datatables.net/plug-ins/1.10.12/i18n/English.json'
+        datatables_url: '//cdn.datatables.net/plug-ins/1.10.12/i18n/English.json',
+
+        dt_special_start_date: 'Start date',
+        dt_special_end_date: 'End date',
+        dt_special_store: 'Store',
+        dt_special_start_date_from: 'Start date from',
+        dt_special_to: 'to',
     };
 });

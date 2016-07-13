@@ -174,14 +174,13 @@ define([
                 });
 
                 //enable datatables
-                var tables = $('.table_specials_list').DataTable( {
+                $('.table_specials_list').DataTable( {                    
+                    "language": { url: appState.get('locale').get('datatables_url') },
                     "dom": 'l<"toolbar">frtip',
-                    "language": {
-                        "url": appState.get('locale').get('datatables_url')
+                    "initComplete": function(settings, json) {
+                      $(settings.nTableWrapper).find('.dataTables_length').after('<div class="toolbar"><label>' + appState.get('locale').get('dt_special_start_date_from') + ': <input type="search" id="dateMin" class="date-range" aria-controls="DataTables_Table_2"></label> <label>' + appState.get('locale').get('dt_special_to') + ' <input type="search" id="dateMax" class="date-range" aria-controls="DataTables_Table_2"></label></div>');
                     }
                 });
-
-                alert(<%= locale)
                  
                 $.fn.dataTable.ext.search.push(
                     function( settings, data, index, rowData, counter ) {
@@ -211,9 +210,7 @@ define([
 
                         return date.isBetween(dateMin, dateMax);
                     }
-                );
-
-                $("div.toolbar").html('<label>Start date from: <input type="search" id="dateMin" class="date-range" aria-controls="DataTables_Table_2"></label> <label>to <input type="search" id="dateMax" class="date-range" aria-controls="DataTables_Table_2"></label>');
+                );                
 
                 $( ".date-range" ).each(function( index ) {
                     new Pikaday({ field: $( this )[0] });

@@ -16,7 +16,7 @@ require.config({
         niceinput: '../../libs/niceinput/niceinput',
         datatables: '//cdn.datatables.net/1.10.12/js/jquery.dataTables.min',
         ddslick: 'https://cdn.jsdelivr.net/ddslick/2.0/jquery.ddslick.min',
-        daterangepicker: '//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js'
+        daterangepicker: 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.23/daterangepicker.min'
     },
   
     shim: {

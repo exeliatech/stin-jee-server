@@ -1,4 +1,4 @@
-<div class="bootstrap-iso list">
+<div class="list">
 
     <div class="menu menu_left">
         <a href="#!/specials_list" class="black active"><%= locale.get('specials') %></a>
@@ -39,7 +39,7 @@
         
     </div>
 
-    <div class="specials_list specials_list_all">
+    <div class="specials_list specials_list_all bootstrap-iso">
         
         <%
         if (specials.all.length) { 
@@ -114,7 +114,7 @@
         %>
     </div>
 
-    <div class="specials_list specials_list_active">
+    <div class="specials_list specials_list_active bootstrap-iso">
         
         <%
         if (specials.active.length) { 
@@ -190,7 +190,7 @@
         %>
     </div>
 
-    <div class="specials_list specials_list_queued" style="display: block;">    
+    <div class="specials_list specials_list_queued bootstrap-iso" style="display: block;">    
         
         <%
         if (specials.queued.length) { 
@@ -266,7 +266,7 @@
         %>
     </div>
 
-    <div class="specials_list specials_list_declined">  
+    <div class="specials_list specials_list_declined bootstrap-iso">  
         
         <%
         if (specials.declined.length) { 
@@ -342,7 +342,7 @@
         %>
     </div>
 
-    <div class="specials_list specials_list_expired">
+    <div class="specials_list specials_list_expired bootstrap-iso">
         
         <%
         if (specials.expired.length) { 

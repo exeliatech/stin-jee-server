@@ -15,8 +15,7 @@ require.config({
         colorpicker: '../../libs/colorpicker/colorpicker',
         niceinput: '../../libs/niceinput/niceinput',
         datatables: '//cdn.datatables.net/1.10.12/js/jquery.dataTables.min',
-        ddslick: 'https://cdn.jsdelivr.net/ddslick/2.0/jquery.ddslick.min',
-        pickaday: 'https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.4.0/pikaday.min'
+        ddslick: 'https://cdn.jsdelivr.net/ddslick/2.0/jquery.ddslick.min'
     },
   
     shim: {
@@ -37,9 +36,6 @@ require.config({
         },
         jquery_csv: {
             deps: ['jquery']  
-        },
-        jquery_date_range_picker: {
-            deps: ['jquery', 'moment']  
         }
     }
 

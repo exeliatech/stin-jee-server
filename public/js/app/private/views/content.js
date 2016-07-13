@@ -29,8 +29,7 @@ define([
   'jquery_autocomplete',
   'colorpicker',
   'niceinput',
-  'datatables',
-  'pickaday'
+  'datatables'
 ], function($, _, Backbone, Router, moment, appState, Batch, Manager, BatchList, Specials, InvoicesTemplate, InvoiceInfoTemplate, TransactionsListTemplate, ManagersListTemplate, NewManagerTemplate, ManagerEditTemplate, BatchNotFoundTemplate, SpecialsListTemplate, NewBatchTemplate, BatchInfoTemplate, SpecialsInfoTemplate, ServerErrorTemplate, BatchListTemplate, SpecialEditTemplate, BatchTemplate){
     
     var router = Router.initialize();
@@ -175,9 +174,46 @@ define([
                     "dom": 'l<"toolbar">frtip'
                 });
 
-                $("div.toolbar").html('<label>Search start date: <input type="search" id="datepicker" aria-controls="DataTables_Table_2"></label>');
+                $(document).on('blur', '.date-range', function() {
+                    tables.draw();
+                });
+                 
+                $.fn.dataTable.ext.search.push(
+                    function( settings, data, index, rowData, counter ) {
 
-                var picker = new Pikaday({ field: $('#datepicker')[0] });
+                        var filterstart = $(settings.nTableWrapper).find('#dateMin').val();
+                        var filterend = $(settings.nTableWrapper).find('#dateMax').val();
+                        var iStartDateCol = 4;
+                        var iEndDateCol = 4;
+                     
+                        var tabledatestart = data[iStartDateCol];
+                        var tabledateend= data[iEndDateCol];
+                     
+                        if ( filterstart === "" && filterend === "" )
+                        {
+                            return true;
+                        }
+                        else if ((moment(filterstart).isSame(tabledatestart) || moment(filterstart).isBefore(tabledatestart)) && filterend === "")
+                        {
+                            return true;
+                        }
+                        else if ((moment(filterend).isSame(tabledateend) || moment(filterend).isAfter(tabledateend)) && filterstart === "")
+                        {
+                            return true;
+                        }
+                        else if ((moment(filterstart).isSame(tabledatestart) || moment(filterstart).isBefore(tabledatestart)) && (moment(filterend).isSame(tabledateend) || moment(filterend).isAfter(tabledateend)))
+                        {
+                            return true;
+                        }
+                        return false;
+                    }
+                );
+
+                $("div.toolbar").html('<label>Start date from: <input type="search" id="dateMin" class="date-range" aria-controls="DataTables_Table_2"></label> <label>to <input type="search" id="dateMax" class="date-range" aria-controls="DataTables_Table_2"></label>');
+
+                $( ".date-range" ).each(function( index ) {
+                    new Pikaday({ field: $( this )[0] });
+                });
                 /* end custom datatables */
                 
                 // for some reason this doesn't work due to the loading sequence

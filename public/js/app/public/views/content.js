@@ -10,7 +10,7 @@ define([
   'text!templates/specials_info.html',
   'jquery_autocomplete',
   'jquery_csv',
-  'async!http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false!callback',
+  'async!http://maps.googleapis.com/maps/api/js?key=AIzaSyAIVlBWhGaE4fIGGp-NM4eX2ygwvY8rV2A&libraries=places&sensor=false!callback',
   'ddslick',
   'colorpicker',
   'niceinput',

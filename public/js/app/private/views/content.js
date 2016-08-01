@@ -24,7 +24,8 @@ define([
   'text!templates/batch_list.html',
   'text!templates/special_edit.html',
   'text!templates/batch.html',
-  'async!http://maps.googleapis.com/maps/api/js?key=AIzaSyAIVlBWhGaE4fIGGp-NM4eX2ygwvY8rV2A&libraries=places&sensor=false!callback',
+  //'async!http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false!callback',
+  'async!http://maps.googleapis.com/maps/api/js?key=AIzaSyALhZkbpluC0H5jMmbo1JhnNqPlNcC2578&libraries=places&sensor=false!callback',
   'ddslick',
   'jquery_autocomplete',
   'colorpicker',
@@ -180,7 +181,11 @@ define([
                         }).on('blur', function() {
                             $(this).closest('.toolbar').nextAll('.table_specials_list').DataTable().draw();
                         });
-                    }
+                    },
+                    columnDefs: [
+                        { visible: false, targets: -1 }
+                    ],
+                    autoWidth: false,
                 });
                  
                 $.fn.dataTable.ext.search.push(
@@ -921,7 +926,7 @@ define([
 
             var website = $('#specials_website').val();
             if(website.length > 0 && !_(website).startsWith("http") && !_(website).startsWith("//")) {
-                $('#specials_website').val("https://" + website);
+                $('#specials_website').val("http://" + website);
             }
             
             if ($('#specials_website').val().length !== 0 &&  !/^(http\:\/\/|https\:\/\/|\/\/)?([a-zA-Z0-9\.\-]+(\:[a-zA-Z0-9\.&amp;%\$\-]+)*@)*((25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])|([a-zA-Z0-9\-]+\.)*[a-zA-Z0-9\-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(\:[0-9]+)*(\/($|[a-zA-Z0-9\.\,\?\'\\\+&amp;%\$#\=~_\-]+))*$/.test($('#specials_website').val())) {

@@ -25,7 +25,7 @@ define([
   'text!templates/special_edit.html',
   'text!templates/batch.html',
   //'async!http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false!callback',
-  'async!http://maps.googleapis.com/maps/api/js?key=AIzaSyALhZkbpluC0H5jMmbo1JhnNqPlNcC2578&libraries=places&sensor=false!callback',
+  'async!http://maps.googleapis.com/maps/api/js?key=AIzaSyCNTOvfbnPp6ODq9rMdEqW4MN9Gd1UHAaE&libraries=places&sensor=false!callback',
   'ddslick',
   'jquery_autocomplete',
   'colorpicker',

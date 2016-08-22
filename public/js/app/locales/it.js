@@ -302,6 +302,7 @@ define([], function() {
 
         datatables_url: '//cdn.datatables.net/plug-ins/1.10.12/i18n/Italian.json',
 
+        dt_special_activated_date: 'Attivato',
         dt_special_start_date: 'Data d\'inizio',
         dt_special_end_date: 'Data di fine',
         dt_special_store: ' Negozio',

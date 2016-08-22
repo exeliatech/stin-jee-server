@@ -51,6 +51,7 @@
                 <th><%= locale.get('special_name') %></th>
                 <th><%= locale.get('dt_special_store') %></th>
                 <th><%= locale.get('website') %></th>
+                <th><%= locale.get('dt_special_activated_date') %></th>
                 <th><%= locale.get('dt_special_start_date') %></th>
                 <th><%= locale.get('dt_special_end_date') %></th>
                 <th><%= locale.get('special_views') %></th>
@@ -87,6 +88,8 @@
                         <%= locale.get('no_website') %>
                     <% } %>
                 </td>
+
+                <td class="specials_date1"><%= item.activatedAt == '' ? '' : moment(item.activatedAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').format('D MMMM YYYY') %></td>
                 
                 <td class="specials_date1 <% if (new Date().getTime() > moment(item.endsAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').valueOf()) {%> specials_expired<% } %>"><%= moment(item.createdAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').format('D MMMM YYYY') %></td>
 
@@ -130,6 +133,7 @@
                 <th><%= locale.get('special_name') %></th>
                 <th><%= locale.get('dt_special_store') %></th>
                 <th><%= locale.get('website') %></th>
+                <th><%= locale.get('dt_special_activated_date') %></th>
                 <th><%= locale.get('dt_special_start_date') %></th>
                 <th><%= locale.get('dt_special_end_date') %></th>
                 <th><%= locale.get('special_views') %></th>
@@ -167,6 +171,8 @@
                         <%= locale.get('no_website') %>
                     <% } %>
                 </td>
+
+                <td class="specials_date1"><%= item.activatedAt == '' ? '' : moment(item.activatedAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').format('D MMMM YYYY') %></td>
                 
                 <td class="specials_date1 <% if (new Date().getTime() > moment(item.endsAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').valueOf()) {%> specials_expired<% } %>"><%= moment(item.createdAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').format('D MMMM YYYY') %></td>
 
@@ -210,6 +216,7 @@
                 <th><%= locale.get('special_name') %></th>
                 <th><%= locale.get('dt_special_store') %></th>
                 <th><%= locale.get('website') %></th>
+                <th><%= locale.get('dt_special_activated_date') %></th>
                 <th><%= locale.get('dt_special_start_date') %></th>
                 <th><%= locale.get('dt_special_end_date') %></th>
                 <th><%= locale.get('special_views') %></th>
@@ -247,6 +254,8 @@
                         <%= locale.get('no_website') %>
                     <% } %>
                 </td>
+
+                <td class="specials_date1"><%= item.activatedAt == '' ? '' : moment(item.activatedAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').format('D MMMM YYYY') %></td>
                 
                 <td class="specials_date1 <% if (new Date().getTime() > moment(item.endsAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').valueOf()) {%> specials_expired<% } %>"><%= moment(item.createdAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').format('D MMMM YYYY') %></td>
 
@@ -290,6 +299,7 @@
                 <th><%= locale.get('special_name') %></th>
                 <th><%= locale.get('dt_special_store') %></th>
                 <th><%= locale.get('website') %></th>
+                <th><%= locale.get('dt_special_activated_date') %></th>
                 <th><%= locale.get('dt_special_start_date') %></th>
                 <th><%= locale.get('dt_special_end_date') %></th>
                 <th><%= locale.get('special_views') %></th>
@@ -327,6 +337,8 @@
                         <%= locale.get('no_website') %>
                     <% } %>
                 </td>
+
+                <td class="specials_date1"><%= item.activatedAt == '' ? '' : moment(item.activatedAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').format('D MMMM YYYY') %></td>
                 
                 <td class="specials_date1 <% if (new Date().getTime() > moment(item.endsAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').valueOf()) {%> specials_expired<% } %>"><%= moment(item.createdAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').format('D MMMM YYYY') %></td>
 
@@ -370,6 +382,7 @@
                 <th><%= locale.get('special_name') %></th>
                 <th><%= locale.get('dt_special_store') %></th>
                 <th><%= locale.get('website') %></th>
+                <th><%= locale.get('dt_special_activated_date') %></th>
                 <th><%= locale.get('dt_special_start_date') %></th>
                 <th><%= locale.get('dt_special_end_date') %></th>
                 <th><%= locale.get('special_views') %></th>
@@ -406,6 +419,8 @@
                         <%= locale.get('no_website') %>
                     <% } %>
                 </td>
+
+                <td class="specials_date1"><%= item.activatedAt == '' ? '' : moment(item.activatedAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').format('D MMMM YYYY') %></td>
                 
                 <td class="specials_date1 <% if (new Date().getTime() > moment(item.endsAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').valueOf()) {%> specials_expired<% } %>"><%= moment(item.createdAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').format('D MMMM YYYY') %></td>
 

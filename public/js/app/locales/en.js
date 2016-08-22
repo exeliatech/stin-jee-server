@@ -313,6 +313,7 @@ define([
 
         datatables_url: '//cdn.datatables.net/plug-ins/1.10.12/i18n/English.json',
 
+        dt_special_activated_date: 'Activated',
         dt_special_start_date: 'Start date',
         dt_special_end_date: 'End date',
         dt_special_store: 'Store',

@@ -31,8 +31,12 @@ class FrontendApiSpecialController extends Controller{
                 } else {
                     $image = url('/').'/img/'.$special->image;
                 }
+
+                $activated_date = strtotime($special->activated_at);
+
                 $specials_array[] = array(
                     'active' => ($special->active) ? true : false,
+                    'activatedAt' => $activated_date == strtotime('0000-00-00 00:00:00') ? '' : date('c', $activated_date),
                     'createdAt' => date('c', strtotime($special->created_at)),
                     'endsAt' => date('c', strtotime($special->ends_at)),
                     'id' => $special->object_id,

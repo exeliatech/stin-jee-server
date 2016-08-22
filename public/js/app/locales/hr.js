@@ -302,6 +302,7 @@ define([], function() {
 
         datatables_url: '//cdn.datatables.net/plug-ins/1.10.12/i18n/Croatian.json',
 
+        dt_special_activated_date: 'Aktiviran',
         dt_special_start_date: 'Početni datum',
         dt_special_end_date: 'Datum završetka',
         dt_special_store: 'Dućan',

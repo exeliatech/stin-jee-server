@@ -1013,7 +1013,8 @@ define([
                     store_logo: store_logo,
                     store_logo_bg: $('#store_logo_bg').val(),
                     created_at: $('#specials_created_at').val(),
-                    updated_at: $('#specials_updated_at').val()
+                    updated_at: $('#specials_updated_at').val(),
+                    is_reactivate: $('#specials_is_reactivate').val(),
                 };
 
                 var data_ = new FormData();

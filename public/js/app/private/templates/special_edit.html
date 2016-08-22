@@ -185,8 +185,10 @@
 
         <% if (new Date().getTime() > moment(special.endsAt, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').valueOf()) {%>      
             <input type="button" id="specials_reactivate" class="specials_reactivate reactivate_button" value="<%= locale.get('reactivate') %>" style="width: 80px;" />
+            <input type="hidden" id="specials_is_reactivate" value="true" />
         <% } else { %>                 
             <input type="button" id="specials_reactivate_disabled" class="specials_reactivate reactivate_button disabled" value="<%= locale.get('reactivate') %>" style="width: 80px;" disabled />
+            <input type="hidden" id="specials_is_reactivate" value="false" />
         <% } %>
     </div>
 </div>

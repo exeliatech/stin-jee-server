@@ -97,12 +97,20 @@ class FrontendApiSpecialController extends Controller{
         // this is detected as a value of 0
         // otherwise the screen asked for re-activation  
         $valid_for = $request->input('valid_for');
+
+        // reactivation request as flag
+        $is_reactivate = $request->input('is_reactivate');
+
         if($valid_for != 0) {
             if($valid_for < 1) $valid_for = 1;
             if ($valid_for > 7 && !in_array($valid_for, array(14, 21, 30, 60, 90, 120))) $valid_for = 7;
 
             $special->valid_for = $valid_for;
             $special->ends_at = date("Y-m-d H:i:s", time() + $valid_for * 24 * 60 * 60);
+
+            if($is_reactivate) {
+                $special->views_count = 0; //reset views when the request is changing the start/end date. (22/08/2016 Exelia)
+            }
         }
 
         $special->country = $request->input('country');

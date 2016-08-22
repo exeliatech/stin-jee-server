@@ -108,7 +108,7 @@ class FrontendApiSpecialController extends Controller{
             $special->valid_for = $valid_for;
             $special->ends_at = date("Y-m-d H:i:s", time() + $valid_for * 24 * 60 * 60);
 
-            if($is_reactivate) {
+            if($is_reactivate == "true") {
                 $special->views_count = 0; //reset views when the request is changing the start/end date. (22/08/2016 Exelia)
             }
         }

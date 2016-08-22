@@ -1059,6 +1059,7 @@ define([
         },
 
         reactivateSpecials: function(e) {
+            $('#specials_is_reactivate').val("true");
             this.aproveSpecials(e);
         },
 

@@ -1040,7 +1040,10 @@ define([
                             // google analitics trigger
                             ga('send', 'event', 'website_action', appState.get('locale').get('special_approved'));
 
-                            router.navigate("!/specials_list", true);
+                            // since the windows are now opening in new tabs
+                            // when completed, attempt to close current window instead of routing to the list
+                            //router.navigate("!/specials_list", true);
+                            window.open('','_self').close();
                         } else {
                             alert(appState.get('locale').get('special_creation_failed') + ' ' + data.error.charAt(0).toUpperCase() + data.error.slice(1)) + '.';
                             remove_preloader();
@@ -1073,10 +1076,12 @@ define([
                 if (data.success === true) {
                     
                     // google analitics trigger
-                    ga('send', 'event', 'website_action', appState.get('locale').get('special_declined'));
+                    ga('send', 'event', 'website_action', appState.get('locale').get('special_declined'));                    
                     
-                    router.navigate("!/specials_list", true);
-                    
+                    // since the windows are now opening in new tabs
+                    // when completed, attempt to close current window instead of routing to the list
+                    //router.navigate("!/specials_list", true);
+                    window.open('','_self').close();
                 }
                 else {
                     alert(data.message.message);

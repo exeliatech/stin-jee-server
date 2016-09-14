@@ -27,6 +27,6 @@
 
 <% if (typeof endsAt !== 'undefined' &&  new Date(endsAt).getTime() < new Date().getTime()) { %>
     <div class="info_buttons">
-        <a target="_blank" href="#!/special/reuse/<%= id %>" class="right"><%= locale.get('reuse') %></a>
+        <a target="_blank" href="#!/special/reuse/<%= id %>" class="right" onclick="$(this).closest('tr').prev('tr').addClass('highlight_tr');"><%= locale.get('reuse') %></a>
     </div>
 <% } %>

@@ -337,6 +337,10 @@ tr.shown td.details-control {
     background: skyblue !important;
 }
 
+.highlight_tr {
+    background: #FFFFD5 !important;
+}
+
 .specials_item:last-child, .batch_item:last-child, .invoice_item:last-child {
     border: none;
 }

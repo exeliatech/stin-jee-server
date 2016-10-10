@@ -42,7 +42,7 @@ class Kernel extends ConsoleKernel
             if(!$specials->count()){
                 Mail::send('email.noexpired', array(), function($message) {
                     $message
-                        ->to(array('paolo@stinjee.com'))
+                        ->to(array('partner@stinjee.com'))
                         ->from('no-reply@stinjee.com')
                         ->subject('No specials expiring today');
                 });
@@ -50,7 +50,7 @@ class Kernel extends ConsoleKernel
             }
 
             foreach($specials as $special){
-                $managerMails = array('paolo@stinjee.com');
+                $managerMails = array('partner@stinjee.com');
 
                 //getting manager emails
                 $managers =  Manager::query()->where('country', '=', $special->country_code)->get();

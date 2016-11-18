@@ -1,0 +1,20 @@
+<div class="list">
+
+    <div class="list_header">
+        <%= locale.get('invoice_success_title') %>
+    </div>
+
+    <div id="start_section">
+        <div class="bulk_upload_text" style="margin-bottom: 30px; text-align: center;">
+            <%= locale.get('invoice_success_text') %>
+            <br/><br/>
+            <%= locale.get('succesfull_payment_text') %>
+        </div>
+
+        <br/>
+        <div style="text-align: center;">
+            <a href="/csv/tokens/<%= batch.id %>?purchased=1&transaction=<%= transaction.objectId %>" target="_blank" class="button" style="padding: 12px 19px; font-size: 12px; text-transform: uppercase;"><%= locale.get('download') %></a>
+        </div>
+    </div>
+
+</div>

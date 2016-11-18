@@ -39,6 +39,9 @@ define([], function() {
         website: "Sito web",
         facebook_page: "Pagina Facebook",
         phone_number: "Numero di telefono",
+        source: "Fonte",
+        type: "Digitare",
+        action: "Azione",
         image: "Immagine",
         batch_id: "Codice Pacchetto",
         token_id: "Codice Gettone",
@@ -75,6 +78,22 @@ define([], function() {
         special_creation_failed: "Creazione offeta speciale non riuscita.",
         special_views: "Visualizzazioni",
 
+        // !!!: OPTIONS IN DROPDOWN
+        home_food: 'Casa Cibo',
+        in_store: 'Disponibile',
+        coupon: 'Buono',
+        delivery: 'Consegna',
+
+        order: 'Ordine',
+        order_now: 'Ordina Adesso',
+        order_delivery: 'Ordine Di Consegna',
+        click_here: 'Clicca Qui',
+        more_info: 'Ulteriori informazioni',
+        proceed: 'Procedere',
+        buy_coupon: 'Acquista Coupon',
+        get_offer: 'Vai all\'offerta',
+        buy_now: 'Acquista Ora',
+        website: 'Sito Web',
 
         // !!!: FORM VALIDATION
         invalid_batch_or_token: "Codice pacchetto o codice gettone non valido",
@@ -98,6 +117,9 @@ define([], function() {
         website_field_tooltip: "Il sito web del tuo punto vendita, che gli utenti saranno in grado di visitare.",
         facebook_field_tooltip: "Facebook",
         phone_field_tooltip: "Il numero di telefono del tuo punto vendita. Inseriscilo per poter essere chiamato dai clienti.",
+        type_field_tooltip: "Type field",
+        source_field_tooltip: "Source field",
+        action_field_tooltip: "Action field",
         image_field_tooltip: "Carica una foto del piatto o delle bevande in offerta speciale.",
         admin_field_tooltip: "Seleziona questa casella se preferisci che noi selezioniamo una foto.",
         valid_for_field_tooltip: "Per quanti giorni è valida questa offerta speciale?",

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\URL;
 use Intervention\Image\Facades\Image;
 use Log;
+use App;
 use Validator;
 use App\Batch;
 use App\Token;
@@ -73,6 +74,8 @@ class FrontendApiSpecialController extends Controller{
             'description' => 'required|max:200',
             'store' => 'required',
             'address' => 'required',
+            'type' => 'required|integer',
+            'action' => 'required|integer',
             //'website' => 'required|url', //website
             'phone' => 'required',
             'valid_for' => 'numeric',
@@ -95,6 +98,8 @@ class FrontendApiSpecialController extends Controller{
         $special->site = $request->input('website');
         $special->active = 1;
         $special->phone = $request->input('phone');
+        $special->type = $request->input('type');
+        $special->action = $request->input('action');
         $special->status = 1;
 
         // if the screen only approves, then ignore the effect of the valid for
@@ -237,11 +242,12 @@ class FrontendApiSpecialController extends Controller{
                 'description' => 'required|string|max:200',
                 'address' => 'required|string',
                 'phone' => 'required|string',
+                'type' => 'required|integer',
+                'action' => 'required|integer',
                 'logo_bg' => 'required|string',
                 //'let_admin_choose_image' => 'required|boolean',
                 'batch_id' => 'required|string|max:16',
                 'token_id' => 'required|string|max:16',
-                'phone' => 'required|string',
                 'website' => 'required|url',
             ]);
 
@@ -305,6 +311,9 @@ class FrontendApiSpecialController extends Controller{
             $data['address'] = $special['address'];
             $data['site'] = $special['website'];
             $data['phone'] = $special['phone'];
+            $data['type'] = $special['type'];
+            $data['action'] = $special['action'];
+            $data['source'] = \App\Sources::StinJee;
             $data['batch'] = $batch->object_id;
             $data['token'] = $tokens[0]->object_id;
 
@@ -314,7 +323,6 @@ class FrontendApiSpecialController extends Controller{
             $data['country'] = $special['country'];
             $data['country_code'] = $special['country_code'];
             $data['batch'] = $batch->object_id;
-            $data['token'] = $tokens[0]->object_id;
             $data['manager_country'] = $tokens[0]->object_id;
             $data['let_admin_choose_image'] = 0;
             $data['location_latitude'] = floatval($special['latitude']);
@@ -343,6 +351,8 @@ class FrontendApiSpecialController extends Controller{
             'address' => 'required',
             'website' => 'url',
             'phone' => 'required',
+            'type' => 'required|integer',
+            'action' => 'required|integer',
             'valid_for' => 'required',
             'batch_id' => 'required',
             'token_id' => 'required',
@@ -420,6 +430,9 @@ class FrontendApiSpecialController extends Controller{
         $data['address'] = $request->input('address');
         $data['site'] = $request->input('website');
         $data['phone'] = $request->input('phone');
+        $data['type'] = $request->input('type');
+        $data['action'] = $request->input('action');
+        $data['source'] = \App\Sources::StinJee;
         $data['status'] = 0;
         $data['active'] = 1;
         $data['valid_for'] = $valid_for;

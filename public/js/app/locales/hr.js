@@ -40,6 +40,9 @@ define([], function() {
         website: "Web stranica",
         facebook_page: "Facebook stranica",
         phone_number: "Telefonski broj",
+        source: "Izvor",
+        type: "Tip",
+        action: "Akcijski",
         image: "Slika",
         batch_id: "Broj serije",
         token_id: "Broj bona",
@@ -76,6 +79,22 @@ define([], function() {
         special_creation_failed: "Stvaranje akcijske ponude je neuspjelo",
         special_views: "Posjeta",
 
+        // !!!: OPTIONS IN DROPDOWN
+        home_food: 'Početna Hrane',
+        in_store: 'U trgovini',
+        coupon: 'Kupon',
+        delivery: 'Dostava',
+
+        order: 'Narudžba',
+        order_now: 'Naručite Sada',
+        order_delivery: 'Narudžba Isporuke',
+        click_here: 'Kliknite Ovdje',
+        more_info: 'Više Informacija',
+        proceed: 'Postupiti',
+        buy_coupon: 'Kupite Kupon',
+        get_offer: 'Dobiti Ponudu',
+        buy_now: 'Kupi Sada',
+        website: 'Web Stranica',
 
         // !!!: FORM VALIDATION
         invalid_batch_or_token: "Krivi broj serije ili bona",
@@ -99,6 +118,9 @@ define([], function() {
         website_field_tooltip: "Web stranica lokala dostupna korisnicima.",
         facebook_field_tooltip: "Facebook field tooltip",
         phone_field_tooltip: "Telefonski broj lokala. Unesite lokalni broj",
+        type_field_tooltip: "Type field",
+        source_field_tooltip: "Source field",
+        action_field_tooltip: "Action field",
         image_field_tooltip: "Unesite što precizniju fotografiju jela ili pića u akcijskoj ponudi",
         admin_field_tooltip: "Označite ovo polje ako želite da mi izaberemo fotografiju za vas",
         valid_for_field_tooltip: "Koliko dana bi trebala vrijediti ova akcijska ponuda?",

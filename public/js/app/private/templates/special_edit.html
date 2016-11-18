@@ -84,6 +84,42 @@
     <div class="field">
         <a href="#" class="q" onclick=" var el = $(this).parent().find('.tooltip'); if (el.is(':visible')) $('.tooltip').hide(); else { $('.tooltip').hide(); el.show(); } return false; "></a>
         <div class="tooltip">
+            <%= locale.get('type_field_tooltip') %>
+            <div></div>
+        </div>
+        <label for="specials_phone"><%= locale.get('type') %></label>
+        <select id="type">
+            <option value="1" <% if (special.type === 1) { %> selected <% } %>><%= locale.get('in_store') %></option>
+            <option value="2" <% if (special.type === 2) { %> selected <% } %>><%= locale.get('coupon') %></option>
+            <option value="3" <% if (special.type === 3) { %> selected <% } %>><%= locale.get('delivery') %></option>
+            <option value="4" <% if (special.type === 4) { %> selected <% } %>><%= locale.get('home_food') %></option>
+        </select>
+    </div>
+
+    <div class="field">
+        <a href="#" class="q" onclick=" var el = $(this).parent().find('.tooltip'); if (el.is(':visible')) $('.tooltip').hide(); else { $('.tooltip').hide(); el.show(); } return false; "></a>
+        <div class="tooltip">
+            <%= locale.get('action_field_tooltip') %>
+            <div></div>
+        </div>
+        <label for="specials_phone"><%= locale.get('action') %></label>
+        <select id="action">
+            <option value="1" <% if (special.action === 1) { %> selected <% } %>><%= locale.get('order') %></option>
+            <option value="2" <% if (special.action === 2) { %> selected <% } %>><%= locale.get('order_now') %></option>
+            <option value="3" <% if (special.action === 3) { %> selected <% } %>><%= locale.get('order_delivery') %></option>
+            <option value="4" <% if (special.action === 4) { %> selected <% } %>><%= locale.get('click_here') %></option>
+            <option value="5" <% if (special.action === 5) { %> selected <% } %>><%= locale.get('more_info') %></option>
+            <option value="6" <% if (special.action === 6) { %> selected <% } %>><%= locale.get('proceed') %></option>
+            <option value="7" <% if (special.action === 7) { %> selected <% } %>><%= locale.get('buy_coupon') %></option>
+            <option value="8" <% if (special.action === 8) { %> selected <% } %>><%= locale.get('get_offer') %></option>
+            <option value="9" <% if (special.action === 9) { %> selected <% } %>><%= locale.get('buy_now') %></option>
+            <option value="10" <% if (special.action === 10) { %> selected <% } %>><%= locale.get('website') %></option>
+        </select>
+    </div>
+
+    <div class="field">
+        <a href="#" class="q" onclick=" var el = $(this).parent().find('.tooltip'); if (el.is(':visible')) $('.tooltip').hide(); else { $('.tooltip').hide(); el.show(); } return false; "></a>
+        <div class="tooltip">
             <%= locale.get('image_field_tooltip') %>
             <div></div>
         </div>

@@ -1,162 +1,131 @@
 <div class="bulk_results buy_tokens">
-    
+
     <div class="list_header">
         <%= locale.get('get_more_tokens') %>
     </div>
-    
-    <div class="bulk_upload_text" style="margin-bottom: 30px;">
-        <%= locale.get('buy_tokens_text') %>  <a href="mailto:support@stinjee.com?subject=Stin%20Jee%20/%20Bulk%20Upload%20Specials">support@stinjee.com</a>
-    </div>
-    
-    <div class="tokens_num">
-        <label>
-            <%= locale.get('buy_tokens') %>
-        </label>
-        
-        <select id="tokens" onchange="$('#price_total').html($(this).val()); $('#price_single').html( ( $(this).val() / $(this).find('option:selected').data('value') ).toFixed(2) );">
-            <option data-value="1" value="5">
-                1 token
-            </option>
-            <option data-value="2" value="10">
-                2 tokens
-            </option>
-            <option data-value="5" value="25">
-                5 tokens
-            </option>
-            <option data-value="10" value="50" selected>
-                10 tokens
-            </option>
-            <option data-value="20" value="100">
-                20 tokens
-            </option>
-            <option data-value="50" value="250">
-                50 tokens
-            </option>
-            <option data-value="100" value="475">
-                100 tokens
-            </option>
-            <option data-value="200" value="900">
-                200 tokens
-            </option>
-            <option data-value="500" value="1875">
-                500 tokens
-            </option>
-            <option data-value="1000" value="2500">
-                1000 tokens
-            </option>
-        </select>
-    </div>
-    
-    <div id="price" class="tokens_price">
-        <%= locale.get('total') %>: €<span id="price_total">50</span> (€<span id="price_single">5.00</span> <%= locale.get('each') %>)
-    </div>
-    
-    <div class="card_info">
-                    
-                    <!--[if (!IE)|(gt IE 8)]> -->    
-                        <img src="/i/Visa_Inc._logo.svg" alt="visa" class="visa_logo" />
-                        <img src="/i/MasterCard_Logo.svg" alt="mastercard" class="mastercard_logo" />
-                    <!-- <![endif]-->
-                    <!--[if lte IE 9]>
-                        <img src="/i/png/visa.png" alt="visa" class="visa_logo" />
-                        <img src="/i/png/mastercard.png" alt="mastercard" class="mastercard_logo" />
-                    <![endif]-->
 
-                    <div class="buy_field card_number">
-                        <label>
-                            <%= locale.get('card_number') %>
-                        </label>
-                        <!--<input type="text" id="card_number" value="4417119669820331" />-->
-                        <input type="text" id="card_number" value="" />
-                    </div>
-
-                    <div class="buy_field security_code">
-                        <label>
-                            <%= locale.get('security_code') %>
-                        </label>
-                        <!--<input type="text" id="security_code" value="123" />-->
-                        <input type="text" id="security_code" value="" />
-                    </div>
-
-                    <div class="buy_field name_on_card">
-                        <label>
-                            <%= locale.get('name_on_card') %>
-                        </label>
-                        <!--<input type="text" id="name" value="Vladimir Cherednichenko" />-->
-                        <input type="text" id="name" value="" />
-                    </div>
-
-                    <div class="buy_field expiration">
-                        <label>
-                            <%= locale.get('expiration') %>
-                        </label>
-
-                        <select id="expiration_month">
-                            <option selected>01</option>
-                            <option>02</option>
-                            <option>03</option>
-                            <option>04</option>
-                            <option>05</option>
-                            <option>06</option>
-                            <option>07</option>
-                            <option>08</option>
-                            <option>09</option>
-                            <option>10</option>
-                            <option>11</option>
-                            <option>12</option>
-                        </select>
-
-                        <select id="expiration_year">
-                            <option value="2014">14</option>
-                            <option value="2015" selected>15</option>
-                            <option value="2016">16</option>
-                            <option value="2017">17</option>
-                            <option value="2018">18</option>
-                            <option value="2019">19</option>
-                            <option value="2020">20</option>
-                            <option value="2021">21</option>
-                            <option value="2022">22</option>
-                            <option value="2023">23</option>
-                            <option value="2024">24</option>
-                            <option value="2025">25</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="buy_field card_number payer_info">
-                    <label>
-                        <%= locale.get('email') %> <span style="color: red">*</span>
-                    </label>
-                    <input type="text" id="card_email" value="" />
-                </div>
-                <div class="buy_field card_number payer_info">
-                    <label>
-                        <%= locale.get('company') %>
-                    </label>
-                    <input type="text" id="card_company" value="" />
-                </div>
-                <div class="buy_field card_number payer_info">
-                    <label>
-                        <%= locale.get('country') %>
-                    </label>
-                    <input type="text" id="card_country" value="" />
-                </div>
-                <div class="buy_field card_number payer_info">
-                    <label>
-                        <%= locale.get('city') %>
-                    </label>
-                    <input type="text" id="card_city" value="" />
-                </div>
-    
-    
-    <div style="text-align: center;">
-        <a href="#" id="pay" class="button" onclick="return false"><%= locale.get('pay') %></a>
-        <br/>
-        <br/>
-        
-        <div class="paypal">
-            <span><%= locale.get('powered_by') %></span> <img src="/i/paypal_rgb.svg" alt="paypal" />
+    <div id="start_section">
+        <div class="bulk_upload_text" style="margin-bottom: 30px;">
+            <%= locale.get('buy_tokens_text') %>
         </div>
-        
+
+        <div class="bulk_upload_text" style="margin-bottom: 30px;">
+            <%= locale.get('buy_tokens_text_2') %>
+        </div>
+
+        <div class="tokens_num">
+            <label>
+                <%= locale.get('buy_tokens') %>
+            </label>
+
+            <select id="tokens" onchange="$('#price_total').html($(this).val()); $('#price_single').html( ( $(this).val() / $(this).find('option:selected').data('value') ).toFixed(2) );">
+                <option data-value="5" value="36.60">
+                    <%= locale.get('tokens_5') %>
+                </option>
+                <option data-value="12" value="73.20">
+                    <%= locale.get('tokens_10') %>
+                </option>
+                <option data-value="25" value="146.40">
+                    <%= locale.get('tokens_20') %>
+                </option>
+                <!--<option data-value="10" value="50" selected>
+                    10 tokens
+                </option>
+                <option data-value="20" value="100">
+                    20 tokens
+                </option>
+                <option data-value="50" value="250">
+                    50 tokens
+                </option>
+                <option data-value="100" value="475">
+                    100 tokens
+                </option>
+                <option data-value="200" value="900">
+                    200 tokens
+                </option>
+                <option data-value="500" value="1875">
+                    500 tokens
+                </option>
+                <option data-value="1000" value="2500">
+                    1000 tokens
+                </option>-->
+            </select>
+        </div>
+
+        <div class="tokens_num">
+            <label>
+                <%= locale.get('buy_tokens_email') %>
+            </label>
+
+            <input id="email" type="text" />
+        </div>
+
+        <div id="price" class="tokens_price">
+            <%= locale.get('total') %>: €<span id="price_total">36.60</span> <!--(€<span id="price_single">5.00</span> <%= locale.get('each') %>)-->
+        </div>
+
+        <!--<form method="post" action="https://api-3t.sandbox.paypal.com/nvp" id="paypal">
+            <input type=hidden name="USER" value="sdk-three_api1.sdk.com">
+            <input type=hidden name="PWD" value="QFZCWN5HZM8VBG7Q">
+            <input type=hidden name="SIGNATURE" value="A-IzJhZZjhg29XQ2qnhapuwxIDzyAZQ92FRP5dqBzVesOkzbdUONzmOU">
+            <input type=hidden name="VERSION" value="119.0">
+            <input type=hidden name="PAYMENTREQUEST_0_PAYMENTACTION" value="Sale">
+            <input type=hidden name="PAYMENTREQUEST_0_AMT" value="">
+            <input type=hidden name="RETURNURL" value="http://client.stinjee.com/api/paypal/transaction/success">
+            <input type=hidden name="CANCELURL" value="http://client.stinjee.com/api/paypal/transaction/cancel">
+            <input type=hidden name="METHOD" value="SetExpressCheckout">
+        </form>-->
+
+        <div style="text-align: center;">
+            <a href="#" class="button pay" onclick="return false"><%= locale.get('pay') %></a>
+        </div>
     </div>
-    
+
+    <div id="country_section" style="display: none;">
+        <div class="tokens_num">
+            <label>
+                <%= locale.get('country') %>
+            </label>
+
+            <select id="country">
+                <%
+                _.each(countries, function(item, key, list) {
+                %>
+                <option value="<%= key %>" <% if (key == locale.getCountry().toUpperCase()) { %> selected <% } %> ><%= locale.get(item) %></option>
+                <%
+                });
+                %>
+            </select>
+        </div>
+
+        <div style="margin-left: 200px;">
+            <a href="#" class="button country_section-back" onclick="return false"><%= locale.get('back') %></a>
+            <a href="#" class="button pay" onclick="return false"><%= locale.get('pay') %></a>
+        </div>
+    </div>
+
+    <div id="nopayment_section" style="display: none">
+        <div class="bulk_upload_text" style="margin-bottom: 30px;">
+            <%= locale.get('nopayment_text') %>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="#" class="button pay"><%= locale.get('back') %></a>
+        </div>
+    </div>
+
+    <div style="text-align: center;">
+        <br/>
+        <br/>
+        <div class="paypal">
+            <span><%= locale.get('powered_by') %></span>
+            <!--[if (!IE)|(gt IE 8)]> -->
+            <img src="/i/paypal_rgb.svg" alt="paypal" />
+            <!-- <![endif]-->
+            <!--[if lte IE 9]>
+            <img src="/i/png/paypal.png" alt="paypal" style="width: 179px;" />
+            <![endif]-->
+
+        </div>
+    </div>
 </div>

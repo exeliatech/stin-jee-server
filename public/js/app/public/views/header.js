@@ -2,8 +2,9 @@ define([
   'jquery',
   'underscore_mixin',
   'backbone',
-  'models/AppState'
-], function($, _, Backbone, appState){
+  'models/AppState',
+  'text!templates/header.html'
+], function($, _, Backbone, appState, HeaderTemplate){
 
     var Header = Backbone.View.extend({
         el: $("#header"),
@@ -11,7 +12,7 @@ define([
         model: appState,
 
         templates: {
-            header: _.template($('#HeaderTemplate').html())
+            header: _.template(HeaderTemplate)
         },
 
         initialize: function () { 

@@ -34,6 +34,9 @@ define([
         website: "Website",
         facebook_page: "Facebook page",
         phone_number: "Phone number",
+        source: "Source",
+        type: "Type",
+        action: "Action",
         image: "Image",
         batch_id: "Batch ID",
         token_id: "Token ID",
@@ -70,6 +73,22 @@ define([
         special_creation_failed: "Special creation failed.",
         special_views: "Views",
 
+        // !!!: OPTIONS IN DROPDOWN
+        home_food: 'Home Food',
+        in_store: 'In-Store',
+        coupon: 'Coupon',
+        delivery: 'Delivery',
+
+        order: 'Order',
+        order_now: 'Order Now',
+        order_delivery: 'Order Delivery',
+        click_here: 'Click Here',
+        more_info: 'More Info',
+        proceed: 'Proceed',
+        buy_coupon: 'Buy Coupon',
+        get_offer: 'Get Offer',
+        buy_now: 'Buy Now',
+        website: 'Website',
 
         // !!!: FORM VALIDATION
         invalid_batch_or_token: "Invalid Batch or Token ID.",
@@ -93,6 +112,9 @@ define([
         website_field_tooltip: "The website for your store that users will be able to see.",
         facebook_field_tooltip: "Facebook field tooltip (remove this)",
         phone_field_tooltip: "Your store's phone number. Enter it so it can be called locally.",
+        type_field_tooltip: "Type field",
+        source_field_tooltip: "Source field",
+        action_field_tooltip: "Action field",
         image_field_tooltip: "Upload an appetizing photo of the food or drink on special.",
         admin_field_tooltip: "Check this box if you prefer us to select a photo for you.",
         valid_for_field_tooltip: "For how many days should this special be valid?",

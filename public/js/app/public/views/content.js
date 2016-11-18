@@ -8,6 +8,19 @@ define([
   'models/Batch',
   'models/Specials',
   'text!templates/specials_info.html',
+  'text!templates/start.html',
+  'text!templates/batch_not_found.html',
+  'text!templates/specials_list.html',
+  'text!templates/invalid_token.html',
+  'text!templates/new_specials.html',
+  'text!templates/special_success.html',
+  'text!templates/special_reuse.html',
+  'text!templates/get_more_tokens.html',
+  'text!templates/bulk.html',
+  'text!templates/bulk_progress.html',
+  'text!templates/batch.html',
+  'text!templates/payment_error.html',
+  'text!templates/invoice_success.html',
   'jquery_autocomplete',
   'jquery_csv',
   //'async!http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false!callback',
@@ -16,7 +29,7 @@ define([
   'colorpicker',
   'niceinput',
   'exif'
-], function($, _, Backbone, Router, moment, appState, Batch, Specials, SpecialsInfoTemplate){
+], function($, _, Backbone, Router, moment, appState, Batch, Specials, SpecialsInfoTemplate, StartTemplate, BatchNotFoundTemplate, SpecialsListTemplate, InvalidTokenTemplate, NewSpecialsTemplate, SpecialSuccessTemplate, SpecialReuseTemplate, GetMoreTokensTemplate, BulkTemplate, BulkProgressTemplate, BatchTemplate, PaymentErrorTemplate, InvoiceSuccessTemplate){
     
     
     function base64_decode( data ) {	// Decodes data encoded with MIME base64
@@ -81,19 +94,19 @@ define([
         },
 
         templates: {
-            "start": _.template($('#StartTemplate').html()),
-            "batch_not_found": _.template($('#BatchNotFoundTemplate').html()),
-            "specials_list": _.template($('#SpecialsListTemplate').html()),
-            "invalid_token": _.template($('#InvalidTokenTemplate').html()),
-            "new_specials": _.template($('#NewSpecialsTemplate').html()),
-            "specials_success": _.template($('#SpecialSuccessTemplate').html()),
-            "reuse": _.template($('#SpecialReuseTemplate').html()),
-            "get_more_tokens": _.template($('#GetMoreTokensTemplate').html()),
-            "bulk": _.template($('#BulkTemplate').html()),
-            "bulk_progress": _.template($('#BulkProgressTemplate').html()),
-            "batch": _.template($('#BatchTemplate').html()),
-            "payment_error": _.template($('#PaymentErrorTemplate').html()),
-            "invoice_success": _.template($('#InvoiceSuccessTemplate').html()),
+            "start": _.template(StartTemplate),
+            "batch_not_found": _.template(BatchNotFoundTemplate),
+            "specials_list": _.template(SpecialsListTemplate),
+            "invalid_token": _.template(InvalidTokenTemplate),
+            "new_specials": _.template(NewSpecialsTemplate),
+            "specials_success": _.template(SpecialSuccessTemplate),
+            "reuse": _.template(SpecialReuseTemplate),
+            "get_more_tokens": _.template(GetMoreTokensTemplate),
+            "bulk": _.template(BulkTemplate),
+            "bulk_progress": _.template(BulkProgressTemplate),
+            "batch": _.template(BatchTemplate),
+            "payment_error": _.template(PaymentErrorTemplate),
+            "invoice_success": _.template(InvoiceSuccessTemplate)
         },
 
         initialize: function () { 
@@ -939,6 +952,8 @@ define([
                 country: $('#specials_country').val(),
                 country_code: $('#specials_country_code').val(),
                 phone: $('#specials_phone').val(),
+                type: $('#specials_type').val(),
+                action: $('#specials_action').val(),
                 let_admin_choose_image: $('#specials_admin_image').is(':checked'),
                 urgent: $('#specials_urgent').is(':checked'),
                 valid_for: $('#specials_days input').val(),
@@ -976,7 +991,7 @@ define([
         previewSpecials: function() {
             this.validateSpecial(function(values) { 
                 $('.special_preview-content').html('');
-                var v = ['batch_id', 'token_id', 'name', 'description', 'store', 'address', 'website', 'country', 'phone', 'image'], value;
+                var v = ['batch_id', 'token_id', 'name', 'description', 'store', 'address', 'website', 'country', 'phone', 'type', 'action', 'image'], value;
                 
                 for (var i in values) {
                     if (v.indexOf(i) !== -1) {
@@ -1005,6 +1020,9 @@ define([
                             
                             FR.readAsDataURL(values[i]);
                             value = '<div class="preview_field-value_image">Loading...</div>';
+                        }
+                        if (i === 'action' || i === 'type') {
+                            value = appState.get('locale').get($('#specials_' + i + ' option[value="' + value + '"]').text());
                         }
                         $('.special_preview-content').append('<div class="preview_field"><span>' + appState.get('locale').get(i) + ': </span> <div class="preview_field-value">' + value + '</div></div>');
                     }

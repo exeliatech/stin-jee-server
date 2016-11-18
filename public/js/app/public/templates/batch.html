@@ -1,29 +1,20 @@
 <div class="list">
-    
-    <div class="start_title">
+    <!--<div class="start_title">
         <%= locale.get('do_not_forget_these_tokens', [batch.tokens.length]) %>
     </div>
-    
     <div class="batch_window batch_tokens" style="display: block;">
-    
         <div class="batch_item" id="<%= batch.id %>">
-
                 <div class="specials_name" style="width: 280px; color: #75ad45;">
                     <%= locale.get('batch_id') %>: <%= batch.id %>
                 </div>
-
                 <div class="separator"></div>
-
-                <div class="specials_created_at"> 
+                <div class="specials_created_at">
                     <%= locale.get('created_at') %> <%= moment(batch.createdAt.iso, 'YYYY-MM-DD\THH:mm:ss.SSS\Z').format('D MMMM YYYY') %>
                 </div>
-
                 <div class="separator"></div>
-
                 <div class="specials_tokens" >
                         <%= batch.tokens.length %> <%= locale.get('active_tokens') %>
                 </div>
-
                 <div class="specials_full_info" onclick="event.stopPropagation();" style="display: block;">
                     <% if (batch.tokens.length) { %>
                         <% _.each(batch.tokens, function(item) { %>
@@ -32,15 +23,116 @@
                     <% } %>
 
                     <div class="info_buttons">
-
                         <a href="/csv/tokens/<%= batch.id %>?purchased=1&transaction=<%= transaction %>" class="right" target="_blank"><%= locale.get('get_csv') %></a>
                             <a href="#" class="right blue print" onclick="return false"><%= locale.get('print') %></a>
-
                     </div>
                 </div>
-
             </div>
     </div>
+
+    <div class="start_title">
+        <%= locale.get('succesfull_payment_title', [batch.tokens.length]) %>
+    </div>
+
+    <br/>
+    <div style="text-align: center;">
+        <a href="/csv/tokens/<%= batch.id %>?purchased=1&transaction=<%= transaction %>" target="_blank" class="button"><%= locale.get('download') %></a>
+    </div>
+
+    <br/><br/><br/>
+    <div class="start_title">
+        <%= locale.get('invoice_details_title') %>
+    </div>-->
+
+    <div class="list_header">
+        <%= locale.get('succesfull_payment_title') %>
+        <br/><br/>
+        <span style="font-size: 14px; font-family: Roboto-Light; padding: 0 92px; display: inline-block;"><%= locale.get('invoice_details_title') %></span>
+    </div>
+
+    <div id="start_section" >
+
+        <% if (!transaction.updated) { %>
+
+        <div class="tokens_num">
+            <label>
+                <%= locale.get('email') %>
+            </label>
+
+            <input id="email" type="text" readonly value="<%= transaction.email %>" />
+        </div>
+
+        <div class="tokens_num">
+            <label>
+                <%= locale.get('invoice_company_name') %><span>*</span>
+            </label>
+
+            <input id="company" type="text" value="<%= transaction.company %>" />
+        </div>
+
+        <div class="tokens_num">
+            <label>
+                <%= locale.get('invoice_store_name') %>
+            </label>
+
+            <input id="store" type="text" value="<%= transaction.store %>"  />
+        </div>
+
+        <div class="tokens_num">
+            <label>
+                <%= locale.get('address') %><span>*</span>
+            </label>
+
+            <input id="address" type="text"  value="<%= transaction.address %>"  />
+        </div>
+
+        <div class="tokens_num">
+            <label>
+                <%= locale.get('city') %><span>*</span>
+            </label>
+
+            <input id="city" type="text"  value="<%= transaction.city %>" />
+        </div>
+
+        <div class="tokens_num">
+            <label>
+                <%= locale.get('province') %><span>*</span>
+            </label>
+
+            <input id="province" type="text"  value="<%= transaction.province %>"  />
+        </div>
+
+        <div class="tokens_num">
+            <label>
+                <%= locale.get('postal_id') %><span>*</span>
+            </label>
+
+            <input id="postal_id" type="text"  value="<%= transaction.postal_id %>"  />
+        </div>
+
+        <div class="tokens_num">
+            <label>
+                <%= locale.get('fiscal_id') %><span>*</span>
+            </label>
+
+            <input id="fiscal_id" type="text"  value="<%= transaction.fiscal_id %>"  />
+        </div>
+
+        <div class="tokens_num" style="margin-bottom: -50px;">
+            <label style="width: 200px;">
+                <br/>
+                <br/>
+                <span>*</span> <%= locale.get('field_requested') %>
+            </label>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="#" class="button pay" onclick="return false"><%= locale.get('send') %></a>
+        </div>
+
+
+        <% } %>
+    </div>
+
+
 </div>
-
-

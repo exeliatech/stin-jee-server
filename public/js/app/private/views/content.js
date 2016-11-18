@@ -1003,6 +1003,8 @@ define([
                     website: $('#specials_website').val(),
                     /*facebook: $('#specials_facebook').val(),*/
                     phone: $('#specials_phone').val(),
+                    type: $('#type input').val(),
+                    action: $('#action input').val(),
                     valid_for: $('#specials_days input').val() || $('#specials_days').val(),
                     let_admin_choose_image: $('#specials_admin_image').is(':checked'),
                     longitude: longitude,

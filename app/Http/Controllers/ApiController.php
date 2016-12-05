@@ -19,7 +19,10 @@ class ApiController extends Controller{
 
             'latitude' => 'required',
             'longitude' => 'required',
+            'type' => 'in:'.implode(',', \App\Types::GeyKeys())
         ]);
+
+        $type = $request->json('type');
 
         if($validator->fails()){
             return response()->json(array('error' => $validator->errors()->first(), 'status' => 'error'));
@@ -60,20 +63,27 @@ class ApiController extends Controller{
                 $batches_ids[] =  $batch->object_id;
             }
 
-            $specials = DB::table('specials')
+            $specialsQuery = DB::table('specials')
                 ->select(DB::raw('*, (6373 * acos(
                                                     cos(radians('.$request->json('latitude').')) * cos(radians(`location_latitude`)) *
                                                     cos(radians(`location_longitude`) - radians('.$request->json('longitude').')) +
                                                     sin(radians('.$request->json('latitude').')) * sin(radians(`location_latitude`)))
                                                  ) `distance`'))
-                ->having('distance', '<', 100)
-                ->whereIn('batch', $batches_ids)
+                ->having('distance', '<', 100);
+
+                if ($type) {
+                    $specialsQuery->where('type', '=', \App\Types::fromString($type));
+                }
+                $specialsQuery
                 ->where('ends_at', '>', date("Y-m-d H:i:s"))
                 ->where('active', '=', 1)->where('status', '=', 1)
+                ->whereIn('batch', $batches_ids)
                 ->orderBy('distance', 'asc')
                 ->skip($offset)
-                ->take($parse_limit)
-                ->get();
+                ->take($parse_limit);
+
+            $specials = $specialsQuery->get();
+
 
             //$specials = Specials::query()->whereIn('batch', $batches_ids)->where('ends_at', '>', date("Y-m-d H:i:s"))->where('active', '=', 1)->where('status', '=', 1)->skip($offset)->take($parse_limit)->get();
 
@@ -89,6 +99,7 @@ class ApiController extends Controller{
                         'name' => $special->name,
                         'longitude' => $special->location_longitude,
                         'latitude' => $special->location_latitude,
+                        'type' => \App\Types::toString($special->type),
                         'image600' => $domain.$special->image600,
                         'image320' => $domain.$special->image320,
                         'image100' => $domain.$special->image100,
@@ -133,6 +144,9 @@ class ApiController extends Controller{
                     'storeName' => $specials->store,
                     'address' => $specials->addres,
                     'phone' => $specials->phone,
+                    'type' => \App\Types::toString($specials->type),
+                    'source' => \App\Sources::toString($specials->source),
+                    'action' => \App\Actions::toString($specials->action),
                     'country' => $specials->country,
                     'country_code' => $specials->country_code,
                     'store_logo' => $sdomain.$specials->store_logo,

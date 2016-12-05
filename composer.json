@@ -25,6 +25,9 @@
         },
         "classmap": [
             "database/"
+        ],
+        "files": [
+            "app/Enums.php"
         ]
     },
     "autoload-dev": {

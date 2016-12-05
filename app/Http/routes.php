@@ -30,6 +30,7 @@ $app->get('/private', ['middleware' => 'auth', function () {
 
 $app->post('/api/get_specials_by_longlat','ApiController@getSpecialsByLonglat');
 $app->post('/api/get_specials_info','ApiController@getSpecialsInfo');
+$app->get('/api/get_types','ApiController@getTypes');
 $app->post('/api/subscribe','ApiController@subscribe');
 
 //Frontend API

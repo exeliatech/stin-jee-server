@@ -14,18 +14,48 @@ use Vinkla\Hashids\Facades\Hashids;
 
 class ApiController extends Controller{
 
+
+    public function getTypes(Request $request){
+        $types = array_flip(\App\Types::getKeys());
+        foreach ($types as $key => $value) {
+            $types[$key] = \App\Types::toReadableString($value+1);
+        }
+
+        return response()->json($types);
+    }
+
     public function getSpecialsByLonglat(Request $request){
         $validator = Validator::make($request->json()->all(), [
-
             'latitude' => 'required',
-            'longitude' => 'required',
-            'type' => 'in:'.implode(',', \App\Types::GeyKeys())
+            'longitude' => 'required'//,
+            //'type' => 'in:'.implode(',', \App\Types::getKeys())
         ]);
 
-        $type = $request->json('type');
+        $types = $request->json('types');
+        $validTypes = true;
+        
+        if (is_array($types))
+        {
+            foreach ($types as $key => $value) {
+                if (!\App\Types::isValidName($value)) {
+                    $validTypes = false;
+                    break;
+                }
+            }
+        }
+        else if ($types)
+        {
+            if (!\App\Types::isValidName($types)) {
+                $validTypes = false;
+            }
+        }
+
 
         if($validator->fails()){
             return response()->json(array('error' => $validator->errors()->first(), 'status' => 'error'));
+        }
+        if (!$validTypes) {
+            return response()->json(array('error' => 'The type is invalid.', 'status' => 'error'));
         }
         $specials_array = array();
 
@@ -71,8 +101,13 @@ class ApiController extends Controller{
                                                  ) `distance`'))
                 ->having('distance', '<', 100);
 
-                if ($type) {
-                    $specialsQuery->where('type', '=', \App\Types::fromString($type));
+                if (is_array($types)) {
+                    foreach ($types as $key => $value) {
+                        $types[$key] = \App\Types::fromString($value);
+                    }
+                    $specialsQuery->whereIn('type', $types);
+                } else if ($types) {
+                    $specialsQuery->where('type', '=', \App\Types::fromString($types));
                 }
                 $specialsQuery
                 ->where('ends_at', '>', date("Y-m-d H:i:s"))

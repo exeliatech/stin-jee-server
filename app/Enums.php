@@ -6,6 +6,24 @@ abstract class Types extends Enum
     const Coupon = 2;
     const Delivery = 3;
     const HomeFood = 4;
+
+    public static function toReadableString($value)
+    {
+        if (self::isValidValue($value, $strict = true)) {
+            switch ($value) {
+                case Types::InStore:
+                    return "In-Store";
+                case Types::Coupon:
+                    return "Coupon";
+                case Types::Delivery:
+                    return "Delivery";
+                case Types::HomeFood:
+                    return "Home Food";
+            }
+        }
+
+        return "";
+    }
 }
 
 abstract class Actions extends Enum
@@ -20,12 +38,56 @@ abstract class Actions extends Enum
     const GetOffer = 8;
     const BuyNow = 9;
     const Website = 10;
+
+    public static function toReadableString($value)
+    {
+        if (self::isValidValue($value, $strict = true)) {
+            switch ($value) {
+                case Types::Order:
+                    return "Order";
+                case Types::OrderNow:
+                    return "Order Now";
+                case Types::OrderDelivery:
+                    return "Order Delivery";
+                case Types::ClickHere:
+                    return "Click Here";
+                case Types::MoreInfo:
+                    return "More Info";
+                case Types::Proceed:
+                    return "Proceed";
+                case Types::BuyCoupon:
+                    return "Buy Coupon";
+                case Types::GetOffer:
+                    return "Get Offer";
+                case Types::BuyNow:
+                    return "Buy Now";
+                case Types::Website:
+                    return "Website";
+            }
+        }
+
+        return "";
+    }
 }
 
 abstract class Sources extends Enum
 {
     const StinJee = 1;
     const HungryHouse = 2;
+
+    public static function toReadableString($value)
+    {
+        if (self::isValidValue($value, $strict = true)) {
+            switch ($value) {
+                case Sources::StinJee:
+                    return "Stin Jee";
+                case Sources::HungryHouse:
+                    return "Hungry House";
+            }
+        }
+
+        return "";
+    }
 }
 
 abstract class Enum
@@ -45,7 +107,7 @@ abstract class Enum
         return self::$constCacheArray[$calledClass];
     }
 
-    public static function GeyKeys()
+    public static function getKeys()
     {
         return array_keys(self::getConstants());
     }
